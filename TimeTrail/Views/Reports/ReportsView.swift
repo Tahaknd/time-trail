@@ -129,6 +129,15 @@ struct ReportsView: View {
 
     // MARK: - Bar chart
 
+    /// A floor on the Y-axis domain so a couple of tracked minutes doesn't
+    /// render as a bar filling the entire chart height (SwiftUI Charts
+    /// auto-scales tight to the data otherwise, which makes near-zero
+    /// totals look like 100% usage).
+    private var chartYDomain: ClosedRange<Double> {
+        let maxHours = (viewModel.projectTotals.map { $0.totalSeconds / 3600 }.max() ?? 0)
+        return 0...max(maxHours * 1.25, 0.5)
+    }
+
     private var barChart: some View {
         Chart(viewModel.projectTotals, id: \.projectName) { total in
             BarMark(
@@ -140,8 +149,23 @@ struct ReportsView: View {
             )
             .cornerRadius(4)
         }
-        .chartYAxisLabel("Hours")
+        .chartYScale(domain: chartYDomain)
+        .chartYAxis {
+            AxisMarks(position: .trailing, values: .automatic(desiredCount: 4)) { value in
+                AxisGridLine()
+                AxisValueLabel {
+                    if let hours = value.as(Double.self) {
+                        Text(DurationFormatter.format(hours * 3600))
+                    }
+                }
+            }
+        }
         .frame(height: 200)
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(nsColor: .controlBackgroundColor).opacity(0.5))
+        )
     }
 
     // MARK: - Breakdown list
