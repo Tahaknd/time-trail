@@ -142,12 +142,13 @@ struct ReportsView: View {
         Chart(viewModel.projectTotals, id: \.projectName) { total in
             BarMark(
                 x: .value("Project", total.projectName),
-                y: .value("Hours", total.totalSeconds / 3600)
+                y: .value("Hours", total.totalSeconds / 3600),
+                width: .fixed(36)
             )
             .foregroundStyle(
                 (total.color.flatMap { Color(hex: $0) }) ?? Color.secondary
             )
-            .cornerRadius(4)
+            .cornerRadius(6)
         }
         .chartYScale(domain: chartYDomain)
         .chartYAxis {
