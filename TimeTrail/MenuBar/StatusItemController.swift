@@ -22,12 +22,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         setupMenu()
         viewModel.refresh()
         updateButtonTitle()
-
-        // Refresh the status-item title every 30 s even when the menu is closed.
-        titleRefreshTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
-            self?.viewModel.refresh()
-            self?.updateButtonTitle()
-        }
+        scheduleTitleRefresh()
     }
 
     // MARK: - NSMenuDelegate
@@ -35,7 +30,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     func menuWillOpen(_ menu: NSMenu) {
         viewModel.refresh()
         updateButtonTitle()
-        menuRefreshTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+        menuRefreshTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             self?.viewModel.refresh()
             self?.updateButtonTitle()
         }
@@ -81,10 +76,29 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         statusItem.menu = menu
     }
 
+    /// Ticks every second while a timer is running (for a live-updating
+    /// status-item title) and falls back to a slow 30 s cadence otherwise.
+    private func scheduleTitleRefresh() {
+        titleRefreshTimer?.invalidate()
+        let interval: TimeInterval = viewModel.runningEntry != nil ? 1 : 30
+        titleRefreshTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
+            guard let self else { return }
+            self.viewModel.refresh()
+            self.updateButtonTitle()
+            self.scheduleTitleRefresh()
+        }
+    }
+
     private func updateButtonTitle() {
         guard let button = statusItem.button else { return }
-        button.title = " \(DurationFormatter.format(viewModel.totalSeconds))"
-        button.image = NSImage(systemSymbolName: "clock.fill", accessibilityDescription: "TimeTrail")
+        if let running = viewModel.runningEntry {
+            let elapsed = Date().timeIntervalSince(running.startedAt)
+            button.title = " \(DurationFormatter.format(elapsed))"
+            button.image = NSImage(systemSymbolName: "record.circle.fill", accessibilityDescription: "TimeTrail — running")
+        } else {
+            button.title = " \(DurationFormatter.format(viewModel.totalSecondsToday))"
+            button.image = NSImage(systemSymbolName: "clock.fill", accessibilityDescription: "TimeTrail")
+        }
         button.imagePosition = .imageLeft
     }
 }

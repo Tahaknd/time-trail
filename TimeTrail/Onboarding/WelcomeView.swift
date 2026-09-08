@@ -12,14 +12,14 @@ struct WelcomeView: View {
             Text("Welcome to TimeTrail")
                 .font(.largeTitle.bold())
 
-            Text("TimeTrail automatically tracks which apps you use and attributes your time to projects — no manual timers needed.")
+            Text("Track time against projects with a simple Start/Stop timer — no automatic tracking, no permissions needed.")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: 380)
 
             VStack(alignment: .leading, spacing: 12) {
-                featureRow(icon: "cpu", text: "Automatic tracking — no start/stop buttons")
-                featureRow(icon: "folder", text: "Project tagging by app or window title")
+                featureRow(icon: "play.circle", text: "Start/Stop timer per project")
+                featureRow(icon: "pencil", text: "Edit or backfill past entries anytime")
                 featureRow(icon: "chart.bar", text: "Daily and weekly reports with CSV export")
                 featureRow(icon: "menubar.rectangle", text: "Lives in your menu bar — no dock icon")
             }

@@ -4,28 +4,26 @@ enum CSVExporter {
     struct Row {
         let date: String
         let project: String
-        let app: String
+        let description: String
         let durationSeconds: Int
     }
 
-    /// Aggregates segments into (date, project, app) buckets and returns RFC 4180 CSV.
+    /// Aggregates entries into (date, project, description) buckets and returns RFC 4180 CSV.
     static func build(
-        segments: [ActivitySegment],
-        rules: [ProjectRule],
+        entries: [TimeEntry],
         projects: [Project],
         now: Date = Date()
     ) -> String {
-        let rows = buildRows(segments: segments, rules: rules, projects: projects, now: now)
-        let header = "date,project,app,duration_seconds\n"
+        let rows = buildRows(entries: entries, projects: projects, now: now)
+        let header = "date,project,description,duration_seconds\n"
         let body = rows
-            .map { "\(escape($0.date)),\(escape($0.project)),\(escape($0.app)),\($0.durationSeconds)\n" }
+            .map { "\(escape($0.date)),\(escape($0.project)),\(escape($0.description)),\($0.durationSeconds)\n" }
             .joined()
         return header + body
     }
 
     static func buildRows(
-        segments: [ActivitySegment],
-        rules: [ProjectRule],
+        entries: [TimeEntry],
         projects: [Project],
         now: Date = Date()
     ) -> [Row] {
@@ -41,37 +39,27 @@ enum CSVExporter {
         )
 
         typealias Key = String
-        var buckets: [Key: (date: String, project: String, app: String, seconds: TimeInterval)] = [:]
+        var buckets: [Key: (date: String, project: String, description: String, seconds: TimeInterval)] = [:]
 
-        for seg in segments {
-            let end = seg.endedAt ?? now
-            let duration = end.timeIntervalSince(seg.startedAt)
+        for entry in entries {
+            let end = entry.endedAt ?? now
+            let duration = end.timeIntervalSince(entry.startedAt)
             guard duration > 0 else { continue }
 
-            let projectName: String
-            if let overrideId = seg.overrideProjectId, let project = projectIndex[overrideId] {
-                projectName = project.name
-            } else {
-                let match = RuleMatcher.match(
-                    bundleId: seg.appBundleId,
-                    windowTitle: seg.windowTitle,
-                    rules: rules,
-                    projects: projects
-                )
-                projectName = match?.projectName ?? "Unassigned"
-            }
-            let date = dateFormatter.string(from: seg.startedAt)
-            let key = "\(date)|\(projectName)|\(seg.appName)"
+            let projectName = projectIndex[entry.projectId]?.name ?? "Deleted project"
+            let description = entry.description ?? ""
+            let date = dateFormatter.string(from: entry.startedAt)
+            let key = "\(date)|\(projectName)|\(description)"
 
             if buckets[key] == nil {
-                buckets[key] = (date: date, project: projectName, app: seg.appName, seconds: 0)
+                buckets[key] = (date: date, project: projectName, description: description, seconds: 0)
             }
             buckets[key]!.seconds += duration
         }
 
         return buckets.values
-            .sorted { ($0.date, $0.project, $0.app) < ($1.date, $1.project, $1.app) }
-            .map { Row(date: $0.date, project: $0.project, app: $0.app, durationSeconds: Int($0.seconds)) }
+            .sorted { ($0.date, $0.project, $0.description) < ($1.date, $1.project, $1.description) }
+            .map { Row(date: $0.date, project: $0.project, description: $0.description, durationSeconds: Int($0.seconds)) }
     }
 
     static func escape(_ value: String) -> String {

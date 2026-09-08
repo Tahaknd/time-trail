@@ -35,6 +35,22 @@ enum Migrations {
             }
         }
 
+        // v3: pivot from automatic app/rule-based tracking to manual timers.
+        // Pre-launch, no real user data — the old tables are dropped rather
+        // than migrated.
+        migrator.registerMigration("v3_manual_time_entry") { db in
+            try db.drop(table: "project_rule")
+            try db.drop(table: "activity_segment")
+
+            try db.create(table: "time_entry") { t in
+                t.autoIncrementedPrimaryKey("id")
+                t.column("project_id", .integer).notNull().references("project", onDelete: .cascade)
+                t.column("description", .text)
+                t.column("started_at", .datetime).notNull()
+                t.column("ended_at", .datetime)
+            }
+        }
+
         try migrator.migrate(writer)
     }
 }

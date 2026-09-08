@@ -17,23 +17,20 @@ final class ReportsViewModel: ObservableObject {
     @Published private(set) var totalSeconds: TimeInterval = 0
     @Published var errorMessage: String?
 
-    private let segmentRepo: ActivitySegmentRepository
+    private let entryRepo: TimeEntryRepository
     private let projectRepo: ProjectRepository
-    private let ruleRepo: ProjectRuleRepository
 
     init(db: DatabaseQueue) {
-        segmentRepo = ActivitySegmentRepository(db: db)
+        entryRepo = TimeEntryRepository(db: db)
         projectRepo = ProjectRepository(db: db)
-        ruleRepo = ProjectRuleRepository(db: db)
     }
 
     func load() {
         let (start, end) = dateRange
         do {
-            let segments = try segmentRepo.fetchByDateRange(from: start, to: end)
+            let entries = try entryRepo.fetchByDateRange(from: start, to: end)
             let projects = try projectRepo.fetchAll()
-            let rules = try ruleRepo.fetchAll()
-            let totals = TimeAggregator.aggregate(segments: segments, rules: rules, projects: projects)
+            let totals = TimeAggregator.aggregate(entries: entries, projects: projects)
             projectTotals = totals
             totalSeconds = totals.reduce(0) { $0 + $1.totalSeconds }
         } catch {
@@ -44,12 +41,11 @@ final class ReportsViewModel: ObservableObject {
     func exportCSV() {
         let (start, end) = dateRange
         guard
-            let segments = try? segmentRepo.fetchByDateRange(from: start, to: end),
-            let projects = try? projectRepo.fetchAll(),
-            let rules = try? ruleRepo.fetchAll()
+            let entries = try? entryRepo.fetchByDateRange(from: start, to: end),
+            let projects = try? projectRepo.fetchAll()
         else { return }
 
-        let csv = CSVExporter.build(segments: segments, rules: rules, projects: projects)
+        let csv = CSVExporter.build(entries: entries, projects: projects)
 
         let panel = NSSavePanel()
         panel.allowedContentTypes = [UTType.commaSeparatedText]

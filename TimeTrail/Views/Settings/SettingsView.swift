@@ -22,7 +22,7 @@ struct SettingsView: View {
             if let project = selectedProject {
                 ProjectDetailView(project: project, viewModel: viewModel)
             } else {
-                Text("Select a project to manage its rules.")
+                Text("Select a project to edit its name and color.")
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
