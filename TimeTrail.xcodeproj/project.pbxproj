@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BCACAC90986C885BC2C2B07 /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78056CD367E6C79875A88C6 /* ProjectRepository.swift */; };
+		1486E049F16705FAF0253E44 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 4700B46E1E99720C27E0045C /* GRDB */; };
+		31603017418C5B6656331D4E /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD665F4493C2BCE22B74EABD /* Migrations.swift */; };
+		4616EDEE3190569127BB78E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD665E990C24738DC54C86 /* AppDelegate.swift */; };
+		65C025A724EBE23DBCEB9B3D /* ActivitySegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FCBFCFD6C9C1C1C3089B0 /* ActivitySegment.swift */; };
+		66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C145B5B5F6632E432DA7B /* DatabaseManager.swift */; };
+		82D2B24937EA12BAE9789E63 /* TimeTrailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */; };
+		834D76CF809724B47D398820 /* ProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */; };
+		BE7B28779AB94C368AD464C3 /* ActivitySegmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82763EFEE5F722279A7F7782 /* ActivitySegmentRepository.swift */; };
+		C55E206FA03261D5B1BA3846 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 5F55DD2965D5C4B859AEA79B /* GRDB */; };
+		D29DC20E8E66698EB207C2AC /* ProjectRuleRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAB7355011FDA2218003E52 /* ProjectRuleRepositoryTests.swift */; };
+		DFA283B0C9D401F1A8777865 /* ActivitySegmentRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F62F521DC265B838750109 /* ActivitySegmentRepositoryTests.swift */; };
+		E7D914AB2A21DECF3729EDC7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1C69C8C014E216EF84ED3 /* Project.swift */; };
+		E910A1B384987A5DDF1FCACD /* ProjectRuleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632489DBFF00C383317D0411 /* ProjectRuleRepository.swift */; };
+		F34F66557875B4186F87C54E /* ProjectRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5848061E108A548A241B4CF5 /* ProjectRule.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		77EA3FF8B94179D02ED9D77D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D092B8CB3B44FAA829982C81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3A3DD545EE8ED8FC9537CE0;
+			remoteInfo = TimeTrail;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		077FCBFCFD6C9C1C1C3089B0 /* ActivitySegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySegment.swift; sourceTree = "<group>"; };
+		2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5848061E108A548A241B4CF5 /* ProjectRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRule.swift; sourceTree = "<group>"; };
+		5CCD665E990C24738DC54C86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		626C145B5B5F6632E432DA7B /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		632489DBFF00C383317D0411 /* ProjectRuleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRuleRepository.swift; sourceTree = "<group>"; };
+		7CAB7355011FDA2218003E52 /* ProjectRuleRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRuleRepositoryTests.swift; sourceTree = "<group>"; };
+		82763EFEE5F722279A7F7782 /* ActivitySegmentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySegmentRepository.swift; sourceTree = "<group>"; };
+		87F62F521DC265B838750109 /* ActivitySegmentRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySegmentRepositoryTests.swift; sourceTree = "<group>"; };
+		8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrailApp.swift; sourceTree = "<group>"; };
+		996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryTests.swift; sourceTree = "<group>"; };
+		99A1C69C8C014E216EF84ED3 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		AD665F4493C2BCE22B74EABD /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
+		B727BD3716D66EE44C0BEB37 /* TimeTrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B918900A96AB533BC6C68ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F78056CD367E6C79875A88C6 /* ProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepository.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		233F73BF67541B0EAEB24ACE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55E206FA03261D5B1BA3846 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BE4BDF145731F76129D17B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1486E049F16705FAF0253E44 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2BA13F8A26CD1F077825B5A4 /* TimeTrail */ = {
+			isa = PBXGroup;
+			children = (
+				5CCD665E990C24738DC54C86 /* AppDelegate.swift */,
+				B918900A96AB533BC6C68ECB /* Info.plist */,
+				8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */,
+				EC45F0A846B37735D9B68CAE /* Database */,
+				AA6AC3CD18107EB6CC7A6190 /* Models */,
+				3379644EF36C0D4076F8BA69 /* Repositories */,
+			);
+			path = TimeTrail;
+			sourceTree = "<group>";
+		};
+		3379644EF36C0D4076F8BA69 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				82763EFEE5F722279A7F7782 /* ActivitySegmentRepository.swift */,
+				F78056CD367E6C79875A88C6 /* ProjectRepository.swift */,
+				632489DBFF00C383317D0411 /* ProjectRuleRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		61A2B8905923AF5B3ECE1C08 = {
+			isa = PBXGroup;
+			children = (
+				2BA13F8A26CD1F077825B5A4 /* TimeTrail */,
+				72FE38EFE1AB58D56764FBC4 /* TimeTrailTests */,
+				C824FD7F84E42AEEE23D2DF9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		72FE38EFE1AB58D56764FBC4 /* TimeTrailTests */ = {
+			isa = PBXGroup;
+			children = (
+				87F62F521DC265B838750109 /* ActivitySegmentRepositoryTests.swift */,
+				996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */,
+				7CAB7355011FDA2218003E52 /* ProjectRuleRepositoryTests.swift */,
+			);
+			path = TimeTrailTests;
+			sourceTree = "<group>";
+		};
+		AA6AC3CD18107EB6CC7A6190 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				077FCBFCFD6C9C1C1C3089B0 /* ActivitySegment.swift */,
+				99A1C69C8C014E216EF84ED3 /* Project.swift */,
+				5848061E108A548A241B4CF5 /* ProjectRule.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C824FD7F84E42AEEE23D2DF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B727BD3716D66EE44C0BEB37 /* TimeTrail.app */,
+				2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC45F0A846B37735D9B68CAE /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				626C145B5B5F6632E432DA7B /* DatabaseManager.swift */,
+				AD665F4493C2BCE22B74EABD /* Migrations.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2F2099E64F2AB2900ED6511 /* TimeTrailTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 070F250A5EFA75E9AB7194BB /* Build configuration list for PBXNativeTarget "TimeTrailTests" */;
+			buildPhases = (
+				8B1023B79757F07AF6ADD88E /* Sources */,
+				233F73BF67541B0EAEB24ACE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9B48A8D1639FF6789099EBEB /* PBXTargetDependency */,
+			);
+			name = TimeTrailTests;
+			packageProductDependencies = (
+				5F55DD2965D5C4B859AEA79B /* GRDB */,
+			);
+			productName = TimeTrailTests;
+			productReference = 2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D3A3DD545EE8ED8FC9537CE0 /* TimeTrail */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E4034E3009E9EE74D6E3DF8 /* Build configuration list for PBXNativeTarget "TimeTrail" */;
+			buildPhases = (
+				FEF74499E71C924DC3E165FA /* Sources */,
+				4BE4BDF145731F76129D17B9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeTrail;
+			packageProductDependencies = (
+				4700B46E1E99720C27E0045C /* GRDB */,
+			);
+			productName = TimeTrail;
+			productReference = B727BD3716D66EE44C0BEB37 /* TimeTrail.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D092B8CB3B44FAA829982C81 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = D7057F7CED1E933D2D8C520A /* Build configuration list for PBXProject "TimeTrail" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 61A2B8905923AF5B3ECE1C08;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				29BA75C95B20BCE5381397A9 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C824FD7F84E42AEEE23D2DF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D3A3DD545EE8ED8FC9537CE0 /* TimeTrail */,
+				D2F2099E64F2AB2900ED6511 /* TimeTrailTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B1023B79757F07AF6ADD88E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFA283B0C9D401F1A8777865 /* ActivitySegmentRepositoryTests.swift in Sources */,
+				834D76CF809724B47D398820 /* ProjectRepositoryTests.swift in Sources */,
+				D29DC20E8E66698EB207C2AC /* ProjectRuleRepositoryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEF74499E71C924DC3E165FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65C025A724EBE23DBCEB9B3D /* ActivitySegment.swift in Sources */,
+				BE7B28779AB94C368AD464C3 /* ActivitySegmentRepository.swift in Sources */,
+				4616EDEE3190569127BB78E5 /* AppDelegate.swift in Sources */,
+				66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */,
+				31603017418C5B6656331D4E /* Migrations.swift in Sources */,
+				E7D914AB2A21DECF3729EDC7 /* Project.swift in Sources */,
+				0BCACAC90986C885BC2C2B07 /* ProjectRepository.swift in Sources */,
+				F34F66557875B4186F87C54E /* ProjectRule.swift in Sources */,
+				E910A1B384987A5DDF1FCACD /* ProjectRuleRepository.swift in Sources */,
+				82D2B24937EA12BAE9789E63 /* TimeTrailApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9B48A8D1639FF6789099EBEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3A3DD545EE8ED8FC9537CE0 /* TimeTrail */;
+			targetProxy = 77EA3FF8B94179D02ED9D77D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		30DA35DEE0ADF38AD2944DC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5;
+			};
+			name = Release;
+		};
+		627456EB1768A5CF62D07D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = TimeTrail/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.app;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9ED422CA1208A3ABC3812C94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5;
+			};
+			name = Debug;
+		};
+		AC78E7151249605ECA115E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeTrail.app/Contents/MacOS/TimeTrail";
+			};
+			name = Release;
+		};
+		AF231B8881A783438F1E3757 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = TimeTrail/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.app;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DE94EF249EE750FAED717164 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.tests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimeTrail.app/Contents/MacOS/TimeTrail";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		070F250A5EFA75E9AB7194BB /* Build configuration list for PBXNativeTarget "TimeTrailTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE94EF249EE750FAED717164 /* Debug */,
+				AC78E7151249605ECA115E07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4E4034E3009E9EE74D6E3DF8 /* Build configuration list for PBXNativeTarget "TimeTrail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				627456EB1768A5CF62D07D1F /* Debug */,
+				AF231B8881A783438F1E3757 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D7057F7CED1E933D2D8C520A /* Build configuration list for PBXProject "TimeTrail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9ED422CA1208A3ABC3812C94 /* Debug */,
+				30DA35DEE0ADF38AD2944DC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29BA75C95B20BCE5381397A9 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4700B46E1E99720C27E0045C /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29BA75C95B20BCE5381397A9 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+		5F55DD2965D5C4B859AEA79B /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29BA75C95B20BCE5381397A9 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = D092B8CB3B44FAA829982C81 /* Project object */;
+}
