@@ -24,12 +24,14 @@
 		4616EDEE3190569127BB78E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD665E990C24738DC54C86 /* AppDelegate.swift */; };
 		478674BC99FA45B236F71A00 /* TagColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE41D7E819F96EFDB232DFC /* TagColor.swift */; };
 		51CFD01ED96E078CFAE3BC95 /* ProjectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBD57257F2899519AF7DC /* ProjectEditView.swift */; };
+		631F5ED919AA5FB183BEEE83 /* EmptyStateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2E6017FE2C09F3A5E4AC3 /* EmptyStateBadge.swift */; };
 		66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C145B5B5F6632E432DA7B /* DatabaseManager.swift */; };
 		6AC0EE123999D91D4A3AE020 /* TimeEntryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F077202663A80B760926452 /* TimeEntryRepositoryTests.swift */; };
 		71EF38C6A42B278BB0C015F3 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10477D701EBFDDFE5AC0C8DA /* ReportsViewModel.swift */; };
 		738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E4472807768F2ED6D9878 /* Color+Hex.swift */; };
 		7C3D21139957920B423FF659 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B058371D20DEF4F230C891F /* DurationFormatter.swift */; };
 		7CF13BD092FF633C8EED8EC8 /* AppSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F715688BA027E432B82601F1 /* AppSettingsTabView.swift */; };
+		7D239E28DF2A39B97776CE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEBB5920C3BDA72274F632E6 /* Assets.xcassets */; };
 		80C7F1F0EC1D958FE47067A5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD166D788E19574B4CD3 /* OnboardingView.swift */; };
 		80EF8D7A17A5C5FF5EBFA890 /* ProjectsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6258F42312C017320E0B74 /* ProjectsTabView.swift */; };
 		8140B25E05350D9C66EA90E9 /* TimerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F08D2805582074981BA3D /* TimerTabView.swift */; };
@@ -84,6 +86,7 @@
 		91AEBD57257F2899519AF7DC /* ProjectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditView.swift; sourceTree = "<group>"; };
 		996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryTests.swift; sourceTree = "<group>"; };
 		99A1C69C8C014E216EF84ED3 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		9AF2E6017FE2C09F3A5E4AC3 /* EmptyStateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateBadge.swift; sourceTree = "<group>"; };
 		9E607EB5557FE821029199C1 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		AD665F4493C2BCE22B74EABD /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
 		B727BD3716D66EE44C0BEB37 /* TimeTrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,7 @@
 		F715688BA027E432B82601F1 /* AppSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTabView.swift; sourceTree = "<group>"; };
 		F78056CD367E6C79875A88C6 /* ProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepository.swift; sourceTree = "<group>"; };
 		FEBAC5F5EAC65BDBE76125A5 /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		FEBB5920C3BDA72274F632E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				F715688BA027E432B82601F1 /* AppSettingsTabView.swift */,
+				9AF2E6017FE2C09F3A5E4AC3 /* EmptyStateBadge.swift */,
 				34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */,
 				91AEBD57257F2899519AF7DC /* ProjectEditView.swift */,
 				3E6258F42312C017320E0B74 /* ProjectsTabView.swift */,
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				5CCD665E990C24738DC54C86 /* AppDelegate.swift */,
+				FEBB5920C3BDA72274F632E6 /* Assets.xcassets */,
 				B918900A96AB533BC6C68ECB /* Info.plist */,
 				8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */,
 				EC45F0A846B37735D9B68CAE /* Database */,
@@ -304,6 +310,7 @@
 			buildConfigurationList = 4E4034E3009E9EE74D6E3DF8 /* Build configuration list for PBXNativeTarget "TimeTrail" */;
 			buildPhases = (
 				FEF74499E71C924DC3E165FA /* Sources */,
+				C073FAC58D01045058BFC821 /* Resources */,
 				4BE4BDF145731F76129D17B9 /* Frameworks */,
 			);
 			buildRules = (
@@ -352,6 +359,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		C073FAC58D01045058BFC821 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D239E28DF2A39B97776CE0B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B1023B79757F07AF6ADD88E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -377,6 +395,7 @@
 				738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */,
 				66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */,
 				7C3D21139957920B423FF659 /* DurationFormatter.swift in Sources */,
+				631F5ED919AA5FB183BEEE83 /* EmptyStateBadge.swift in Sources */,
 				CC121E44327FF6FC9C7A0E90 /* EntryEditView.swift in Sources */,
 				37318B4246871669728D8455 /* EntryEditViewModel.swift in Sources */,
 				34AD49AACD43231CF83741FE /* MainWindowView.swift in Sources */,

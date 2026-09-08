@@ -215,10 +215,8 @@ struct TimerTabView: View {
     @ViewBuilder
     private var entryList: some View {
         if !hasAnyCompletedEntries {
-            VStack(spacing: 10) {
-                Image(systemName: "timer")
-                    .font(.system(size: 36))
-                    .foregroundStyle(.tertiary)
+            VStack(spacing: 14) {
+                EmptyStateBadge(systemImage: "timer", color: themeStore.theme.color)
                 Text("No entries yet")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.secondary)
@@ -232,10 +230,8 @@ struct TimerTabView: View {
                 filterBar
                 Divider()
                 if filteredEntries.isEmpty {
-                    VStack(spacing: 8) {
-                        Image(systemName: "magnifyingglass")
-                            .font(.system(size: 28))
-                            .foregroundStyle(.tertiary)
+                    VStack(spacing: 12) {
+                        EmptyStateBadge(systemImage: "magnifyingglass", color: themeStore.theme.color)
                         Text("No matching entries")
                             .font(.system(size: 13))
                             .foregroundStyle(.secondary)

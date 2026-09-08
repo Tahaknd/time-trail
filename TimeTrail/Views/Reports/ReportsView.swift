@@ -178,10 +178,8 @@ struct ReportsView: View {
     // MARK: - Empty state
 
     private var emptyState: some View {
-        VStack(spacing: 10) {
-            Image(systemName: "chart.bar")
-                .font(.system(size: 36))
-                .foregroundStyle(.tertiary)
+        VStack(spacing: 14) {
+            EmptyStateBadge(systemImage: "chart.bar")
             Text("No activity recorded")
                 .font(.system(size: 14, weight: .medium))
                 .foregroundStyle(.secondary)

@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 
 struct WelcomeView: View {
@@ -5,9 +6,9 @@ struct WelcomeView: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            Image(systemName: "clock.fill")
-                .font(.system(size: 64))
-                .foregroundColor(.accentColor)
+            Image(nsImage: NSApplication.shared.applicationIconImage)
+                .resizable()
+                .frame(width: 88, height: 88)
 
             Text("Welcome to TimeTrail")
                 .font(.largeTitle.bold())
@@ -21,7 +22,7 @@ struct WelcomeView: View {
                 featureRow(icon: "play.circle", text: "Start/Stop timer per project")
                 featureRow(icon: "pencil", text: "Edit or backfill past entries anytime")
                 featureRow(icon: "chart.bar", text: "Daily and weekly reports with CSV export")
-                featureRow(icon: "menubar.rectangle", text: "Lives in your menu bar — no dock icon")
+                featureRow(icon: "tag", text: "Tag entries to slice your reports further")
             }
 
             Spacer()

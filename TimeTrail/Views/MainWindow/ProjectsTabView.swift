@@ -46,10 +46,8 @@ struct ProjectsTabView: View {
     @ViewBuilder
     private var content: some View {
         if viewModel.projects.isEmpty {
-            VStack(spacing: 10) {
-                Image(systemName: "folder")
-                    .font(.system(size: 36))
-                    .foregroundStyle(.tertiary)
+            VStack(spacing: 14) {
+                EmptyStateBadge(systemImage: "folder")
                 Text("No projects yet")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.secondary)
