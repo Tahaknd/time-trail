@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 import GRDB
 
@@ -36,6 +37,9 @@ struct MainWindowView: View {
                     .tag(item)
                     .padding(.vertical, 2)
             }
+            .safeAreaInset(edge: .top, spacing: 0) {
+                sidebarHeader
+            }
             .navigationSplitViewColumnWidth(min: 170, ideal: 190)
         } detail: {
             switch selection {
@@ -52,5 +56,20 @@ struct MainWindowView: View {
         .navigationTitle("TimeTrail")
         .frame(minWidth: 820, minHeight: 540)
         .tint(themeStore.theme.color)
+    }
+
+    private var sidebarHeader: some View {
+        HStack(spacing: 8) {
+            Image(nsImage: NSApplication.shared.applicationIconImage)
+                .resizable()
+                .frame(width: 24, height: 24)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+            Text("TimeTrail")
+                .font(.system(size: 15, weight: .semibold))
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 12)
+        .padding(.bottom, 6)
     }
 }
