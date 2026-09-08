@@ -44,7 +44,7 @@ struct TimeTrailWidgetView: View {
         let color = colorHex.map { Color(hex: $0) } ?? .secondary
         return VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 6) {
-                Circle().fill(color).frame(width: 8, height: 8)
+                Circle().fill(.green).frame(width: 8, height: 8)
                 Text("RUNNING")
                     .font(.system(size: 10, weight: .bold))
                     .foregroundStyle(.secondary)
