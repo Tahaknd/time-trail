@@ -43,10 +43,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.isReleasedWhenClosed = false
         window.center()
 
-        let onboardingView = OnboardingView {
+        let onboardingView = OnboardingView(onComplete: {
             UserDefaults.standard.set(true, forKey: "didCompleteOnboarding")
             window.close()
-        }
+        }, onStepChange: { title in
+            window.title = title
+        })
         window.contentView = NSHostingView(rootView: onboardingView)
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)

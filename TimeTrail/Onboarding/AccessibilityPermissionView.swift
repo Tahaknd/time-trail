@@ -31,10 +31,9 @@ struct AccessibilityPermissionView: View {
 
             Spacer()
 
-            Button("Continue") { onContinue() }
+            Button(checker.isGranted ? "Continue" : "Continue Without Accessibility") { onContinue() }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-                .disabled(!checker.isGranted)
         }
         .padding(40)
         .frame(width: 480, height: 400)
