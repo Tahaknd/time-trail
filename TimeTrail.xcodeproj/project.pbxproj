@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00B7AEB6EC980CEE5248A5A1 /* TimeTrailWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B816E15A5B403817019BF03 /* TimeTrailWidget.swift */; };
 		03F772ED3251DEFC3FAE86A1 /* TimeEntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C3B789C41AF80B9B2778 /* TimeEntryRepository.swift */; };
 		0BCACAC90986C885BC2C2B07 /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78056CD367E6C79875A88C6 /* ProjectRepository.swift */; };
 		0CDDA10DA4619C14842ED193 /* QuickStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA500134D6E2F9E00993550 /* QuickStatusView.swift */; };
 		1486E049F16705FAF0253E44 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 4700B46E1E99720C27E0045C /* GRDB */; };
 		158397D825DA130E2FC4FA38 /* DurationFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3549479341B30A05951782B /* DurationFormatterTests.swift */; };
 		179E259EABA63A3B4AD8A711 /* TimeAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8E7BF66635FB8306BA3E22 /* TimeAggregator.swift */; };
+		1810B7A544B00D694154267E /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C4CD549E810A85B694A7F /* Color+Hex.swift */; };
 		28A759E7306379AAED0FDBBC /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D9B4D4BF3A3BAB069562B /* WelcomeView.swift */; };
 		31603017418C5B6656331D4E /* Migrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD665F4493C2BCE22B74EABD /* Migrations.swift */; };
 		34AD49AACD43231CF83741FE /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */; };
@@ -27,9 +29,8 @@
 		631F5ED919AA5FB183BEEE83 /* EmptyStateBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2E6017FE2C09F3A5E4AC3 /* EmptyStateBadge.swift */; };
 		66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C145B5B5F6632E432DA7B /* DatabaseManager.swift */; };
 		6AC0EE123999D91D4A3AE020 /* TimeEntryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F077202663A80B760926452 /* TimeEntryRepositoryTests.swift */; };
+		6C1B46E55ADA3616D8164CC7 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84100142D638B0C3AA4791E3 /* WidgetSnapshot.swift */; };
 		71EF38C6A42B278BB0C015F3 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10477D701EBFDDFE5AC0C8DA /* ReportsViewModel.swift */; };
-		738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E4472807768F2ED6D9878 /* Color+Hex.swift */; };
-		7C3D21139957920B423FF659 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B058371D20DEF4F230C891F /* DurationFormatter.swift */; };
 		7CF13BD092FF633C8EED8EC8 /* AppSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F715688BA027E432B82601F1 /* AppSettingsTabView.swift */; };
 		7D239E28DF2A39B97776CE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEBB5920C3BDA72274F632E6 /* Assets.xcassets */; };
 		80C7F1F0EC1D958FE47067A5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD166D788E19574B4CD3 /* OnboardingView.swift */; };
@@ -37,13 +38,18 @@
 		8140B25E05350D9C66EA90E9 /* TimerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F08D2805582074981BA3D /* TimerTabView.swift */; };
 		82D2B24937EA12BAE9789E63 /* TimeTrailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */; };
 		834D76CF809724B47D398820 /* ProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */; };
+		88A246AFC4935E13E4C32F9B /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B351594982C87B72486D4D /* DurationFormatter.swift */; };
 		8D53FE5E0C5CB57AE222122C /* CSVExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063CD5C2254150D0464888B /* CSVExporterTests.swift */; };
 		9C9A3262EDEFAF861C919499 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A73F304F34BAF94A111BB /* TimerController.swift */; };
+		AEED7F1620A519A7C6D48E0D /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774C4CD549E810A85B694A7F /* Color+Hex.swift */; };
+		B35EA90B775E038EBAA6B07E /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B351594982C87B72486D4D /* DurationFormatter.swift */; };
 		B678372EF6176F03B527F445 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246952C75EDB7EC66B28DD7D /* AppTheme.swift */; };
+		BFE5ACF1CBDBE84AD8FB8DE1 /* TimeTrailWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 738EE9BF0D1FA05085994AA1 /* TimeTrailWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C292D5386ABBF758190DF78D /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DDB110CBFA2F09D1A896 /* TimeEntry.swift */; };
 		C55E206FA03261D5B1BA3846 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 5F55DD2965D5C4B859AEA79B /* GRDB */; };
 		CC121E44327FF6FC9C7A0E90 /* EntryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C7CD8E9B6631D35223CC0C /* EntryEditView.swift */; };
 		D57F264C866F53E61A7916BC /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E607EB5557FE821029199C1 /* ProjectsViewModel.swift */; };
+		E4D6E4FB9EDCA144A6B8B214 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84100142D638B0C3AA4791E3 /* WidgetSnapshot.swift */; };
 		E7D914AB2A21DECF3729EDC7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1C69C8C014E216EF84ED3 /* Project.swift */; };
 		EC390F9F54AA52606907EC25 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DC382AC1EA31AD2F1FDBB /* TimerViewModel.swift */; };
 		FEF16090AFEA8E3533576770 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBAC5F5EAC65BDBE76125A5 /* StatusItemController.swift */; };
@@ -57,28 +63,54 @@
 			remoteGlobalIDString = D3A3DD545EE8ED8FC9537CE0;
 			remoteInfo = TimeTrail;
 		};
+		A8C4BCE8527FB5D8B94D4BF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D092B8CB3B44FAA829982C81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 236A5EB92D0555FF45C2D843;
+			remoteInfo = TimeTrailWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6F7CB5A86C81144795A4A2E3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BFE5ACF1CBDBE84AD8FB8DE1 /* TimeTrailWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		10477D701EBFDDFE5AC0C8DA /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
-		1B058371D20DEF4F230C891F /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
-		1E6E4472807768F2ED6D9878 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		246952C75EDB7EC66B28DD7D /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2566201663BF7A2AB93F51A2 /* CSVExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
 		2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D46C15654A987FAF90F76CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
+		3B816E15A5B403817019BF03 /* TimeTrailWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrailWidget.swift; sourceTree = "<group>"; };
 		3BA500134D6E2F9E00993550 /* QuickStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStatusView.swift; sourceTree = "<group>"; };
 		3E6258F42312C017320E0B74 /* ProjectsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTabView.swift; sourceTree = "<group>"; };
 		3F4D9B4D4BF3A3BAB069562B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4160C3B789C41AF80B9B2778 /* TimeEntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryRepository.swift; sourceTree = "<group>"; };
+		416E821186F588511410EE93 /* TimeTrail.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeTrail.entitlements; sourceTree = "<group>"; };
 		4CE1DDB110CBFA2F09D1A896 /* TimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
 		5CCD665E990C24738DC54C86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F6B9D374CC335E6BB8608E2 /* EntryEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditViewModel.swift; sourceTree = "<group>"; };
 		626C145B5B5F6632E432DA7B /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		642A73F304F34BAF94A111BB /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
 		6B8E7BF66635FB8306BA3E22 /* TimeAggregator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAggregator.swift; sourceTree = "<group>"; };
+		738EE9BF0D1FA05085994AA1 /* TimeTrailWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimeTrailWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		75E91F6841B1448F672BA0AC /* TimeAggregatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAggregatorTests.swift; sourceTree = "<group>"; };
+		774C4CD549E810A85B694A7F /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		776F1FD91263FA971E07A1FC /* TimerControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControllerTests.swift; sourceTree = "<group>"; };
+		7D9F0F7783B0176FDCE070A9 /* TimeTrailWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeTrailWidget.entitlements; sourceTree = "<group>"; };
+		84100142D638B0C3AA4791E3 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
 		87FAF29FD0061C7FA61A06AC /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrailApp.swift; sourceTree = "<group>"; };
 		8CE41D7E819F96EFDB232DFC /* TagColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagColor.swift; sourceTree = "<group>"; };
@@ -89,6 +121,7 @@
 		9AF2E6017FE2C09F3A5E4AC3 /* EmptyStateBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateBadge.swift; sourceTree = "<group>"; };
 		9E607EB5557FE821029199C1 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		AD665F4493C2BCE22B74EABD /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
+		B0B351594982C87B72486D4D /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
 		B727BD3716D66EE44C0BEB37 /* TimeTrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B918900A96AB533BC6C68ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BF5F08D2805582074981BA3D /* TimerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTabView.swift; sourceTree = "<group>"; };
@@ -159,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				246952C75EDB7EC66B28DD7D /* AppTheme.swift */,
-				1E6E4472807768F2ED6D9878 /* Color+Hex.swift */,
 				8CE41D7E819F96EFDB232DFC /* TagColor.swift */,
 			);
 			path = Utilities;
@@ -180,6 +212,7 @@
 				5CCD665E990C24738DC54C86 /* AppDelegate.swift */,
 				FEBB5920C3BDA72274F632E6 /* Assets.xcassets */,
 				B918900A96AB533BC6C68ECB /* Info.plist */,
+				416E821186F588511410EE93 /* TimeTrail.entitlements */,
 				8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */,
 				EC45F0A846B37735D9B68CAE /* Database */,
 				95483D54E09B5DCE7E3AB563 /* MenuBar */,
@@ -212,11 +245,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5FF66730267C3FC94ED170D6 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				774C4CD549E810A85B694A7F /* Color+Hex.swift */,
+				B0B351594982C87B72486D4D /* DurationFormatter.swift */,
+				84100142D638B0C3AA4791E3 /* WidgetSnapshot.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		61A2B8905923AF5B3ECE1C08 = {
 			isa = PBXGroup;
 			children = (
+				5FF66730267C3FC94ED170D6 /* Shared */,
 				2BA13F8A26CD1F077825B5A4 /* TimeTrail */,
 				72FE38EFE1AB58D56764FBC4 /* TimeTrailTests */,
+				D5F6954D16685141F3F3C1CB /* TimeTrailWidget */,
 				C824FD7F84E42AEEE23D2DF9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -247,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				2566201663BF7A2AB93F51A2 /* CSVExporter.swift */,
-				1B058371D20DEF4F230C891F /* DurationFormatter.swift */,
 				3BA500134D6E2F9E00993550 /* QuickStatusView.swift */,
 				FEBAC5F5EAC65BDBE76125A5 /* StatusItemController.swift */,
 				6B8E7BF66635FB8306BA3E22 /* TimeAggregator.swift */,
@@ -269,8 +313,19 @@
 			children = (
 				B727BD3716D66EE44C0BEB37 /* TimeTrail.app */,
 				2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */,
+				738EE9BF0D1FA05085994AA1 /* TimeTrailWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D5F6954D16685141F3F3C1CB /* TimeTrailWidget */ = {
+			isa = PBXGroup;
+			children = (
+				2D46C15654A987FAF90F76CE /* Info.plist */,
+				7D9F0F7783B0176FDCE070A9 /* TimeTrailWidget.entitlements */,
+				3B816E15A5B403817019BF03 /* TimeTrailWidget.swift */,
+			);
+			path = TimeTrailWidget;
 			sourceTree = "<group>";
 		};
 		EC45F0A846B37735D9B68CAE /* Database */ = {
@@ -285,6 +340,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		236A5EB92D0555FF45C2D843 /* TimeTrailWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F5E0B06DEB329151813F926 /* Build configuration list for PBXNativeTarget "TimeTrailWidgetExtension" */;
+			buildPhases = (
+				47200C85DB0498F39EE9600C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeTrailWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = TimeTrailWidgetExtension;
+			productReference = 738EE9BF0D1FA05085994AA1 /* TimeTrailWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D2F2099E64F2AB2900ED6511 /* TimeTrailTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070F250A5EFA75E9AB7194BB /* Build configuration list for PBXNativeTarget "TimeTrailTests" */;
@@ -312,10 +384,12 @@
 				FEF74499E71C924DC3E165FA /* Sources */,
 				C073FAC58D01045058BFC821 /* Resources */,
 				4BE4BDF145731F76129D17B9 /* Frameworks */,
+				6F7CB5A86C81144795A4A2E3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A766F88E1D0B6ED4D5607098 /* PBXTargetDependency */,
 			);
 			name = TimeTrail;
 			packageProductDependencies = (
@@ -334,6 +408,18 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					236A5EB92D0555FF45C2D843 = {
+						DevelopmentTeam = ZB2L72NPRS;
+						ProvisioningStyle = Automatic;
+					};
+					D2F2099E64F2AB2900ED6511 = {
+						DevelopmentTeam = ZB2L72NPRS;
+						ProvisioningStyle = Automatic;
+					};
+					D3A3DD545EE8ED8FC9537CE0 = {
+						DevelopmentTeam = ZB2L72NPRS;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = D7057F7CED1E933D2D8C520A /* Build configuration list for PBXProject "TimeTrail" */;
@@ -354,6 +440,7 @@
 			projectRoot = "";
 			targets = (
 				D3A3DD545EE8ED8FC9537CE0 /* TimeTrail */,
+				236A5EB92D0555FF45C2D843 /* TimeTrailWidgetExtension */,
 				D2F2099E64F2AB2900ED6511 /* TimeTrailTests */,
 			);
 		};
@@ -371,6 +458,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		47200C85DB0498F39EE9600C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AEED7F1620A519A7C6D48E0D /* Color+Hex.swift in Sources */,
+				88A246AFC4935E13E4C32F9B /* DurationFormatter.swift in Sources */,
+				00B7AEB6EC980CEE5248A5A1 /* TimeTrailWidget.swift in Sources */,
+				6C1B46E55ADA3616D8164CC7 /* WidgetSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B1023B79757F07AF6ADD88E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,9 +490,9 @@
 				7CF13BD092FF633C8EED8EC8 /* AppSettingsTabView.swift in Sources */,
 				B678372EF6176F03B527F445 /* AppTheme.swift in Sources */,
 				43FB1F36ED8CB6C189ADD33C /* CSVExporter.swift in Sources */,
-				738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */,
+				1810B7A544B00D694154267E /* Color+Hex.swift in Sources */,
 				66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */,
-				7C3D21139957920B423FF659 /* DurationFormatter.swift in Sources */,
+				B35EA90B775E038EBAA6B07E /* DurationFormatter.swift in Sources */,
 				631F5ED919AA5FB183BEEE83 /* EmptyStateBadge.swift in Sources */,
 				CC121E44327FF6FC9C7A0E90 /* EntryEditView.swift in Sources */,
 				37318B4246871669728D8455 /* EntryEditViewModel.swift in Sources */,
@@ -419,6 +517,7 @@
 				8140B25E05350D9C66EA90E9 /* TimerTabView.swift in Sources */,
 				EC390F9F54AA52606907EC25 /* TimerViewModel.swift in Sources */,
 				28A759E7306379AAED0FDBBC /* WelcomeView.swift in Sources */,
+				E4D6E4FB9EDCA144A6B8B214 /* WidgetSnapshot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +528,11 @@
 			isa = PBXTargetDependency;
 			target = D3A3DD545EE8ED8FC9537CE0 /* TimeTrail */;
 			targetProxy = 77EA3FF8B94179D02ED9D77D /* PBXContainerItemProxy */;
+		};
+		A766F88E1D0B6ED4D5607098 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 236A5EB92D0555FF45C2D843 /* TimeTrailWidgetExtension */;
+			targetProxy = A8C4BCE8527FB5D8B94D4BF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -466,8 +570,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ZB2L72NPRS;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -494,6 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TimeTrail/TimeTrail.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = TimeTrail/Info.plist;
@@ -504,6 +611,27 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.app;
 				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		77ADC1BEC6BDC122F9169865 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TimeTrailWidget/TimeTrailWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TimeTrailWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.app.widget;
+				PRODUCT_NAME = TimeTrailWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -540,8 +668,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ZB2L72NPRS;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -593,6 +723,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TimeTrail/TimeTrail.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = TimeTrail/Info.plist;
@@ -603,6 +734,27 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.app;
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B26294932988B7A95A48C089 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TimeTrailWidget/TimeTrailWidget.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = TimeTrailWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.timetrail.app.widget;
+				PRODUCT_NAME = TimeTrailWidget;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -641,6 +793,15 @@
 			buildConfigurations = (
 				627456EB1768A5CF62D07D1F /* Debug */,
 				AF231B8881A783438F1E3757 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7F5E0B06DEB329151813F926 /* Build configuration list for PBXNativeTarget "TimeTrailWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77ADC1BEC6BDC122F9169865 /* Debug */,
+				B26294932988B7A95A48C089 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

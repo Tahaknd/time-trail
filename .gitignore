@@ -1,2 +1,7 @@
 # AgentFlow worktrees
 .agentflow/
+
+# Xcode user-specific state (schemes, breakpoints, window layout)
+xcuserdata/
+*.xcuserstate
+DerivedData/

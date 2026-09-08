@@ -14,6 +14,8 @@ settings:
   base:
     SWIFT_VERSION: "5"
     SWIFT_STRICT_CONCURRENCY: minimal
+    DEVELOPMENT_TEAM: ZB2L72NPRS
+    CODE_SIGN_STYLE: Automatic
 
 targets:
   TimeTrail:
@@ -21,6 +23,7 @@ targets:
     platform: macOS
     sources:
       - path: TimeTrail
+      - path: Shared
     info:
       path: TimeTrail/Info.plist
       properties:
@@ -35,8 +38,33 @@ targets:
         MACOSX_DEPLOYMENT_TARGET: "13.0"
         ENABLE_HARDENED_RUNTIME: true
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_ENTITLEMENTS: TimeTrail/TimeTrail.entitlements
     dependencies:
       - package: GRDB
+      - target: TimeTrailWidgetExtension
+        embed: true
+
+  TimeTrailWidgetExtension:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: TimeTrailWidget
+      - path: Shared
+    info:
+      path: TimeTrailWidget/Info.plist
+      properties:
+        CFBundleDisplayName: TimeTrail Widget
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_NAME: TimeTrailWidget
+        PRODUCT_BUNDLE_IDENTIFIER: com.timetrail.app.widget
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+        ENABLE_HARDENED_RUNTIME: true
+        CODE_SIGN_ENTITLEMENTS: TimeTrailWidget/TimeTrailWidget.entitlements
+        SKIP_INSTALL: true
+        GENERATE_INFOPLIST_FILE: false
 
   TimeTrailTests:
     type: bundle.unit-test

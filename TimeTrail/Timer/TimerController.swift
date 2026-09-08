@@ -12,6 +12,15 @@ final class TimerController: ObservableObject {
         runningEntry = try? repository.fetchRunning()
     }
 
+    /// Re-reads the running entry from the database. Multiple TimerController
+    /// instances exist at once (main window, status item) and each only
+    /// updates its own in-memory state on its own start()/stop() calls — so
+    /// without this, one instance can go stale relative to a timer
+    /// started/stopped through a different instance.
+    func syncRunningEntry() {
+        runningEntry = try? repository.fetchRunning()
+    }
+
     @discardableResult
     func start(projectId: Int64, description: String? = nil, tags: String? = nil) throws -> TimeEntry {
         if runningEntry != nil {

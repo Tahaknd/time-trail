@@ -31,10 +31,44 @@ final class TimerViewModel: ObservableObject {
         do {
             allProjects = try projectRepo.fetchAll()
             recentEntries = try entryRepo.fetchByDateRange(from: start, to: end)
+            timerController.syncRunningEntry()
             runningEntry = timerController.runningEntry
+            publishWidgetSnapshot()
         } catch {
             // Fail silently — stale data stays visible until the next successful refresh.
         }
+    }
+
+    /// Pushes a lightweight summary to the App Group so the widget extension
+    /// (which can't open the app's sandboxed SQLite database) can show
+    /// something without needing IPC into the running app.
+    private func publishWidgetSnapshot() {
+        let today = recentEntries.filter { Calendar.current.isDateInToday($0.startedAt) }
+        var totals: [Int64: TimeInterval] = [:]
+        let now = Date()
+        for entry in today where entry.endedAt != nil || entry.id == runningEntry?.id {
+            totals[entry.projectId, default: 0] += (entry.endedAt ?? now).timeIntervalSince(entry.startedAt)
+        }
+        let top = totals
+            .sorted { $0.value > $1.value }
+            .prefix(3)
+            .map { pid, seconds in
+                WidgetSnapshot.ProjectTotal(
+                    name: projectName(for: pid),
+                    colorHex: projectColor(for: pid) ?? "#8E8E93",
+                    seconds: seconds
+                )
+            }
+
+        let snapshot = WidgetSnapshot(
+            runningProjectName: runningEntry.map { projectName(for: $0.projectId) },
+            runningProjectColorHex: runningEntry.flatMap { projectColor(for: $0.projectId) },
+            runningStartedAt: runningEntry?.startedAt,
+            todayTotalSeconds: totalSecondsToday,
+            topProjectsToday: Array(top),
+            updatedAt: Date()
+        )
+        WidgetSnapshotStore.write(snapshot)
     }
 
     var totalSecondsToday: TimeInterval {
