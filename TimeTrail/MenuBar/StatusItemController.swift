@@ -52,9 +52,18 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         let contentItem = NSMenuItem()
         contentItem.view = hosting
 
+        // nil target routes through the responder chain to AppDelegate.openSettings()
+        let settingsItem = NSMenuItem(
+            title: "Settings\u{2026}",
+            action: NSSelectorFromString("openSettings"),
+            keyEquivalent: ","
+        )
+
         let menu = NSMenu()
         menu.delegate = self
         menu.addItem(contentItem)
+        menu.addItem(.separator())
+        menu.addItem(settingsItem)
         menu.addItem(.separator())
         menu.addItem(
             withTitle: "Quit TimeTrail",
