@@ -52,7 +52,13 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         let contentItem = NSMenuItem()
         contentItem.view = hosting
 
-        // nil target routes through the responder chain to AppDelegate.openSettings()
+        // nil target routes through the responder chain to AppDelegate.openReports/openSettings
+        let reportsItem = NSMenuItem(
+            title: "Reports\u{2026}",
+            action: NSSelectorFromString("openReports"),
+            keyEquivalent: "r"
+        )
+
         let settingsItem = NSMenuItem(
             title: "Settings\u{2026}",
             action: NSSelectorFromString("openSettings"),
@@ -63,6 +69,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         menu.delegate = self
         menu.addItem(contentItem)
         menu.addItem(.separator())
+        menu.addItem(reportsItem)
         menu.addItem(settingsItem)
         menu.addItem(.separator())
         menu.addItem(
