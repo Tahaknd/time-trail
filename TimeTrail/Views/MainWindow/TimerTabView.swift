@@ -7,6 +7,10 @@ struct TimerTabView: View {
     @State private var tagsText: String = ""
     @State private var showingTagField = false
     @State private var editTarget: EditSheetTarget?
+    @State private var hoveredEntryId: Int64?
+    @State private var searchText: String = ""
+    @State private var filterProjectId: Int64?
+    @ObservedObject private var themeStore = AppThemeStore.shared
 
     var body: some View {
         VStack(spacing: 0) {
@@ -115,7 +119,7 @@ struct TimerTabView: View {
                         .font(.system(size: 13))
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(showingTagField || !tagsText.isEmpty ? Color.accentColor : .secondary)
+                .foregroundStyle(showingTagField || !tagsText.isEmpty ? themeStore.theme.color : .secondary)
                 .help("Add tags")
 
                 Button {
@@ -133,6 +137,7 @@ struct TimerTabView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 14)
+        .animation(.easeInOut(duration: 0.15), value: viewModel.runningEntry?.id)
     }
 
     private func projectBadge(color: String?, name: String) -> some View {
@@ -156,7 +161,7 @@ struct TimerTabView: View {
                 .font(.system(size: 16, weight: .bold))
                 .foregroundStyle(.white)
                 .frame(width: 40, height: 40)
-                .background(Circle().fill(pickedProjectId == nil ? Color.gray.opacity(0.5) : Color.accentColor))
+                .background(Circle().fill(pickedProjectId == nil ? Color.gray.opacity(0.5) : themeStore.theme.color))
         }
         .buttonStyle(.plain)
         .disabled(pickedProjectId == nil || viewModel.allProjects.isEmpty)
@@ -187,10 +192,29 @@ struct TimerTabView: View {
 
     // MARK: - Entry list
 
+    private var filteredEntries: [TimeEntry] {
+        var entries = viewModel.recentEntries.filter { $0.endedAt != nil }
+        if let filterProjectId {
+            entries = entries.filter { $0.projectId == filterProjectId }
+        }
+        let query = searchText.trimmingCharacters(in: .whitespaces)
+        if !query.isEmpty {
+            entries = entries.filter { entry in
+                (entry.description?.localizedCaseInsensitiveContains(query) ?? false)
+                    || viewModel.projectName(for: entry.projectId).localizedCaseInsensitiveContains(query)
+                    || entry.tagList.contains { $0.localizedCaseInsensitiveContains(query) }
+            }
+        }
+        return entries
+    }
+
+    private var hasAnyCompletedEntries: Bool {
+        viewModel.recentEntries.contains { $0.endedAt != nil }
+    }
+
     @ViewBuilder
     private var entryList: some View {
-        let completed = viewModel.recentEntries.filter { $0.endedAt != nil }
-        if completed.isEmpty {
+        if !hasAnyCompletedEntries {
             VStack(spacing: 10) {
                 Image(systemName: "timer")
                     .font(.system(size: 36))
@@ -204,23 +228,74 @@ struct TimerTabView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
-            ScrollView {
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    ForEach(groupedByDay(completed), id: \.day) { group in
-                        Section {
-                            ForEach(Array(group.entries.enumerated()), id: \.element.id) { index, entry in
-                                entryRow(entry)
-                                if index < group.entries.count - 1 {
-                                    Divider().padding(.leading, 44)
+            VStack(spacing: 0) {
+                filterBar
+                Divider()
+                if filteredEntries.isEmpty {
+                    VStack(spacing: 8) {
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 28))
+                            .foregroundStyle(.tertiary)
+                        Text("No matching entries")
+                            .font(.system(size: 13))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ScrollView {
+                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                            ForEach(groupedByDay(filteredEntries), id: \.day) { group in
+                                Section {
+                                    ForEach(Array(group.entries.enumerated()), id: \.element.id) { index, entry in
+                                        entryRow(entry)
+                                        if index < group.entries.count - 1 {
+                                            Divider().padding(.leading, 44)
+                                        }
+                                    }
+                                } header: {
+                                    dayHeader(group)
                                 }
                             }
-                        } header: {
-                            dayHeader(group)
                         }
                     }
                 }
             }
         }
+    }
+
+    private var filterBar: some View {
+        HStack(spacing: 10) {
+            HStack(spacing: 6) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+                TextField("Search entries", text: $searchText)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 12))
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 5)
+            .background(Color(nsColor: .controlBackgroundColor))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .frame(maxWidth: 220)
+
+            Menu {
+                Button("All projects") { filterProjectId = nil }
+                Divider()
+                ForEach(viewModel.allProjects, id: \.id) { project in
+                    Button(project.name) { filterProjectId = project.id }
+                }
+            } label: {
+                Text(filterProjectId.map(viewModel.projectName) ?? "All projects")
+                    .font(.system(size: 12))
+            }
+            .menuStyle(.borderlessButton)
+            .fixedSize()
+
+            Spacer()
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
     }
 
     private func dayHeader(_ group: DayGroup) -> some View {
@@ -267,12 +342,7 @@ struct TimerTabView: View {
                 if !entry.tagList.isEmpty {
                     HStack(spacing: 4) {
                         ForEach(entry.tagList, id: \.self) { tag in
-                            Text(tag)
-                                .font(.system(size: 10, weight: .medium))
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Color(nsColor: .controlBackgroundColor))
-                                .clipShape(Capsule())
+                            TagChip(tag: tag)
                         }
                     }
                 }
@@ -282,12 +352,27 @@ struct TimerTabView: View {
                 Text(DurationFormatter.format((entry.endedAt ?? Date()).timeIntervalSince(entry.startedAt)))
                     .font(.system(size: 13).monospacedDigit())
                     .foregroundStyle(.secondary)
+
+                Button {
+                    if let id = entry.id { viewModel.deleteEntry(id: id) }
+                } label: {
+                    Image(systemName: "trash")
+                        .font(.system(size: 11))
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
+                .opacity(hoveredEntryId == entry.id ? 1 : 0)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 9)
             .contentShape(Rectangle())
+            .background(hoveredEntryId == entry.id ? Color(nsColor: .controlBackgroundColor) : Color.clear)
+            .animation(.easeInOut(duration: 0.1), value: hoveredEntryId)
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            hoveredEntryId = hovering ? entry.id : (hoveredEntryId == entry.id ? nil : hoveredEntryId)
+        }
         .contextMenu {
             Button("Edit") { editTarget = .existing(entry) }
             Button("Delete", role: .destructive) {

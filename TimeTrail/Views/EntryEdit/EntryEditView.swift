@@ -75,12 +75,7 @@ struct TagSuggestionRow: View {
                             let existing = tagsText.trimmingCharacters(in: .whitespaces)
                             tagsText = existing.isEmpty ? tag : "\(existing), \(tag)"
                         } label: {
-                            Text(tag)
-                                .font(.system(size: 11))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 3)
-                                .background(Color(nsColor: .controlBackgroundColor))
-                                .clipShape(Capsule())
+                            TagChip(tag: tag)
                         }
                         .buttonStyle(.plain)
                     }

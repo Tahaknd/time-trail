@@ -5,6 +5,7 @@ private enum SidebarItem: String, CaseIterable, Identifiable {
     case timer = "Timer"
     case reports = "Reports"
     case projects = "Projects"
+    case settings = "Settings"
 
     var id: String { rawValue }
 
@@ -13,6 +14,7 @@ private enum SidebarItem: String, CaseIterable, Identifiable {
         case .timer: return "play.circle.fill"
         case .reports: return "chart.bar.fill"
         case .projects: return "folder.fill"
+        case .settings: return "gearshape.fill"
         }
     }
 }
@@ -25,6 +27,7 @@ struct MainWindowView: View {
     @StateObject private var projectsViewModel = ProjectsViewModel(
         projectRepo: ProjectRepository(db: DatabaseManager.shared.dbQueue)
     )
+    @StateObject private var themeStore = AppThemeStore.shared
 
     var body: some View {
         NavigationSplitView {
@@ -42,9 +45,12 @@ struct MainWindowView: View {
                 ReportsView(viewModel: reportsViewModel)
             case .projects:
                 ProjectsTabView(viewModel: projectsViewModel)
+            case .settings:
+                AppSettingsTabView(themeStore: themeStore)
             }
         }
         .navigationTitle("TimeTrail")
         .frame(minWidth: 820, minHeight: 540)
+        .tint(themeStore.theme.color)
     }
 }

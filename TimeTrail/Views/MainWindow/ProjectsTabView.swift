@@ -3,6 +3,7 @@ import SwiftUI
 struct ProjectsTabView: View {
     @ObservedObject var viewModel: ProjectsViewModel
     @State private var editTarget: ProjectEditTarget?
+    @State private var hoveredProjectId: Int64?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -89,8 +90,12 @@ struct ProjectsTabView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
             .contentShape(Rectangle())
+            .background(hoveredProjectId == project.id ? Color(nsColor: .controlBackgroundColor) : Color.clear)
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            hoveredProjectId = hovering ? project.id : (hoveredProjectId == project.id ? nil : hoveredProjectId)
+        }
         .contextMenu {
             Button("Edit") { editTarget = .existing(project) }
             Button("Delete", role: .destructive) {

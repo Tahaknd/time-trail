@@ -22,12 +22,14 @@
 		4390E7C34D0C78B066184119 /* TimerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F1FD91263FA971E07A1FC /* TimerControllerTests.swift */; };
 		43FB1F36ED8CB6C189ADD33C /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2566201663BF7A2AB93F51A2 /* CSVExporter.swift */; };
 		4616EDEE3190569127BB78E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD665E990C24738DC54C86 /* AppDelegate.swift */; };
+		478674BC99FA45B236F71A00 /* TagColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE41D7E819F96EFDB232DFC /* TagColor.swift */; };
 		51CFD01ED96E078CFAE3BC95 /* ProjectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBD57257F2899519AF7DC /* ProjectEditView.swift */; };
 		66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C145B5B5F6632E432DA7B /* DatabaseManager.swift */; };
 		6AC0EE123999D91D4A3AE020 /* TimeEntryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F077202663A80B760926452 /* TimeEntryRepositoryTests.swift */; };
 		71EF38C6A42B278BB0C015F3 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10477D701EBFDDFE5AC0C8DA /* ReportsViewModel.swift */; };
 		738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E4472807768F2ED6D9878 /* Color+Hex.swift */; };
 		7C3D21139957920B423FF659 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B058371D20DEF4F230C891F /* DurationFormatter.swift */; };
+		7CF13BD092FF633C8EED8EC8 /* AppSettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F715688BA027E432B82601F1 /* AppSettingsTabView.swift */; };
 		80C7F1F0EC1D958FE47067A5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD166D788E19574B4CD3 /* OnboardingView.swift */; };
 		80EF8D7A17A5C5FF5EBFA890 /* ProjectsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6258F42312C017320E0B74 /* ProjectsTabView.swift */; };
 		8140B25E05350D9C66EA90E9 /* TimerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F08D2805582074981BA3D /* TimerTabView.swift */; };
@@ -35,6 +37,7 @@
 		834D76CF809724B47D398820 /* ProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */; };
 		8D53FE5E0C5CB57AE222122C /* CSVExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063CD5C2254150D0464888B /* CSVExporterTests.swift */; };
 		9C9A3262EDEFAF861C919499 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A73F304F34BAF94A111BB /* TimerController.swift */; };
+		B678372EF6176F03B527F445 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246952C75EDB7EC66B28DD7D /* AppTheme.swift */; };
 		C292D5386ABBF758190DF78D /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DDB110CBFA2F09D1A896 /* TimeEntry.swift */; };
 		C55E206FA03261D5B1BA3846 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 5F55DD2965D5C4B859AEA79B /* GRDB */; };
 		CC121E44327FF6FC9C7A0E90 /* EntryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C7CD8E9B6631D35223CC0C /* EntryEditView.swift */; };
@@ -58,6 +61,7 @@
 		10477D701EBFDDFE5AC0C8DA /* ReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewModel.swift; sourceTree = "<group>"; };
 		1B058371D20DEF4F230C891F /* DurationFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatter.swift; sourceTree = "<group>"; };
 		1E6E4472807768F2ED6D9878 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		246952C75EDB7EC66B28DD7D /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2566201663BF7A2AB93F51A2 /* CSVExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
 		2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 		776F1FD91263FA971E07A1FC /* TimerControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControllerTests.swift; sourceTree = "<group>"; };
 		87FAF29FD0061C7FA61A06AC /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrailApp.swift; sourceTree = "<group>"; };
+		8CE41D7E819F96EFDB232DFC /* TagColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagColor.swift; sourceTree = "<group>"; };
 		8F077202663A80B760926452 /* TimeEntryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryRepositoryTests.swift; sourceTree = "<group>"; };
 		91AEBD57257F2899519AF7DC /* ProjectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditView.swift; sourceTree = "<group>"; };
 		996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryTests.swift; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 		CB14AD166D788E19574B4CD3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D4C7CD8E9B6631D35223CC0C /* EntryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditView.swift; sourceTree = "<group>"; };
 		F063CD5C2254150D0464888B /* CSVExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporterTests.swift; sourceTree = "<group>"; };
+		F715688BA027E432B82601F1 /* AppSettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTabView.swift; sourceTree = "<group>"; };
 		F78056CD367E6C79875A88C6 /* ProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepository.swift; sourceTree = "<group>"; };
 		FEBAC5F5EAC65BDBE76125A5 /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +130,7 @@
 		0CA75F363B66E8581777B00C /* MainWindow */ = {
 			isa = PBXGroup;
 			children = (
+				F715688BA027E432B82601F1 /* AppSettingsTabView.swift */,
 				34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */,
 				91AEBD57257F2899519AF7DC /* ProjectEditView.swift */,
 				3E6258F42312C017320E0B74 /* ProjectsTabView.swift */,
@@ -146,7 +153,9 @@
 		1E0655A3B387388F03656025 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				246952C75EDB7EC66B28DD7D /* AppTheme.swift */,
 				1E6E4472807768F2ED6D9878 /* Color+Hex.swift */,
+				8CE41D7E819F96EFDB232DFC /* TagColor.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -362,6 +371,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4616EDEE3190569127BB78E5 /* AppDelegate.swift in Sources */,
+				7CF13BD092FF633C8EED8EC8 /* AppSettingsTabView.swift in Sources */,
+				B678372EF6176F03B527F445 /* AppTheme.swift in Sources */,
 				43FB1F36ED8CB6C189ADD33C /* CSVExporter.swift in Sources */,
 				738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */,
 				66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */,
@@ -380,6 +391,7 @@
 				361807EAEA4AB6010AC44F34 /* ReportsView.swift in Sources */,
 				71EF38C6A42B278BB0C015F3 /* ReportsViewModel.swift in Sources */,
 				FEF16090AFEA8E3533576770 /* StatusItemController.swift in Sources */,
+				478674BC99FA45B236F71A00 /* TagColor.swift in Sources */,
 				179E259EABA63A3B4AD8A711 /* TimeAggregator.swift in Sources */,
 				C292D5386ABBF758190DF78D /* TimeEntry.swift in Sources */,
 				03F772ED3251DEFC3FAE86A1 /* TimeEntryRepository.swift in Sources */,
