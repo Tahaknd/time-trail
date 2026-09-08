@@ -58,39 +58,43 @@ struct ProjectsTabView: View {
         } else {
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    ForEach(Array(viewModel.projects.enumerated()), id: \.element.id) { index, project in
+                    ForEach(viewModel.projects, id: \.id) { project in
                         row(project)
-                        if index < viewModel.projects.count - 1 {
-                            Divider().padding(.leading, 44)
-                        }
                     }
                 }
+                .padding(.top, 8)
             }
         }
     }
 
     private func row(_ project: Project) -> some View {
-        Button {
+        let color = Color(hex: project.color)
+        return Button {
             editTarget = .existing(project)
         } label: {
             HStack(spacing: 12) {
-                Circle()
-                    .fill(Color(hex: project.color))
-                    .frame(width: 12, height: 12)
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(color)
+                    .frame(width: 4, height: 26)
                 Text(project.name)
-                    .font(.system(size: 13))
+                    .font(.system(size: 13, weight: .semibold))
                     .foregroundStyle(.primary)
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.tertiary)
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 16)
             .padding(.vertical, 10)
             .contentShape(Rectangle())
-            .background(hoveredProjectId == project.id ? Color(nsColor: .controlBackgroundColor) : Color.clear)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(hoveredProjectId == project.id ? color.opacity(0.10) : Color(nsColor: .controlBackgroundColor).opacity(0.5))
+            )
         }
         .buttonStyle(.plain)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 3)
         .onHover { hovering in
             hoveredProjectId = hovering ? project.id : (hoveredProjectId == project.id ? nil : hoveredProjectId)
         }

@@ -147,32 +147,31 @@ struct ReportsView: View {
     // MARK: - Breakdown list
 
     private var breakdownList: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 8) {
             ForEach(viewModel.projectTotals, id: \.projectName) { total in
                 rowView(for: total)
-                if total.projectName != viewModel.projectTotals.last?.projectName {
-                    Divider()
-                }
             }
         }
-        .background(Color(nsColor: .controlBackgroundColor))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     private func rowView(for total: TimeAggregator.ProjectTotal) -> some View {
-        HStack(spacing: 10) {
-            Circle()
-                .fill((total.color.flatMap { Color(hex: $0) }) ?? Color.secondary)
-                .frame(width: 10, height: 10)
+        let color = (total.color.flatMap { Color(hex: $0) }) ?? Color.secondary
+        return HStack(spacing: 12) {
+            RoundedRectangle(cornerRadius: 2)
+                .fill(color)
+                .frame(width: 4, height: 24)
             Text(total.projectName)
-                .font(.system(size: 13))
+                .font(.system(size: 13, weight: .semibold))
             Spacer()
             Text(DurationFormatter.format(total.totalSeconds))
-                .font(.system(size: 13).monospacedDigit())
-                .foregroundStyle(.secondary)
+                .font(.system(size: 14, weight: .semibold).monospacedDigit())
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(nsColor: .controlBackgroundColor).opacity(0.5))
+        )
     }
 
     // MARK: - Empty state

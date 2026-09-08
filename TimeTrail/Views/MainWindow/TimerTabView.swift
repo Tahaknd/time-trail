@@ -137,21 +137,33 @@ struct TimerTabView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 14)
+        .background(runningTint)
         .animation(.easeInOut(duration: 0.15), value: viewModel.runningEntry?.id)
     }
 
+    private var runningTint: Color {
+        guard let running = viewModel.runningEntry,
+              let hex = viewModel.projectColor(for: running.projectId)
+        else { return .clear }
+        return Color(hex: hex).opacity(0.10)
+    }
+
     private func projectBadge(color: String?, name: String) -> some View {
-        HStack(spacing: 6) {
-            Circle()
-                .fill(color.map { Color(hex: $0) } ?? Color.secondary.opacity(0.4))
-                .frame(width: 9, height: 9)
+        let resolved = color.map { Color(hex: $0) }
+        return HStack(spacing: 6) {
+            if resolved == nil {
+                Circle()
+                    .fill(Color.secondary.opacity(0.4))
+                    .frame(width: 9, height: 9)
+            }
             Text(name)
-                .font(.system(size: 13, weight: .medium))
+                .font(.system(size: 13, weight: .semibold))
                 .lineLimit(1)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .background(Color(nsColor: .controlBackgroundColor))
+        .foregroundStyle(resolved == nil ? Color.primary : Color.white)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(resolved ?? Color(nsColor: .controlBackgroundColor))
         .clipShape(Capsule())
     }
 
@@ -242,15 +254,13 @@ struct TimerTabView: View {
                         LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                             ForEach(groupedByDay(filteredEntries), id: \.day) { group in
                                 Section {
-                                    ForEach(Array(group.entries.enumerated()), id: \.element.id) { index, entry in
+                                    ForEach(group.entries, id: \.id) { entry in
                                         entryRow(entry)
-                                        if index < group.entries.count - 1 {
-                                            Divider().padding(.leading, 44)
-                                        }
                                     }
                                 } header: {
                                     dayHeader(group)
                                 }
+                                .padding(.bottom, 4)
                             }
                         }
                     }
@@ -310,35 +320,32 @@ struct TimerTabView: View {
     }
 
     private func entryRow(_ entry: TimeEntry) -> some View {
-        Button {
+        let projectColor = viewModel.projectColor(for: entry.projectId).map { Color(hex: $0) } ?? .secondary
+        return Button {
             editTarget = .existing(entry)
         } label: {
             HStack(spacing: 12) {
-                Circle()
-                    .fill(viewModel.projectColor(for: entry.projectId).map { Color(hex: $0) } ?? Color.secondary.opacity(0.4))
-                    .frame(width: 8, height: 8)
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(projectColor)
+                    .frame(width: 4, height: 30)
 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(entry.description?.isEmpty == false ? entry.description! : viewModel.projectName(for: entry.projectId))
-                        .font(.system(size: 13))
-                        .foregroundStyle(.primary)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(entry.description?.isEmpty == false ? entry.description! : "No description")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(entry.description?.isEmpty == false ? .primary : .tertiary)
                         .lineLimit(1)
-                    HStack(spacing: 4) {
-                        Text(viewModel.projectName(for: entry.projectId))
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundStyle(.secondary)
-                        Text("·")
-                            .foregroundStyle(.tertiary)
+                    HStack(spacing: 6) {
+                        Text(viewModel.projectName(for: entry.projectId).uppercased())
+                            .font(.system(size: 10, weight: .bold))
+                            .tracking(0.3)
+                            .foregroundStyle(projectColor)
                         Text(timeRange(entry))
                             .font(.system(size: 11))
                             .foregroundStyle(.tertiary)
-                    }
-                }
-
-                if !entry.tagList.isEmpty {
-                    HStack(spacing: 4) {
-                        ForEach(entry.tagList, id: \.self) { tag in
-                            TagChip(tag: tag)
+                        if !entry.tagList.isEmpty {
+                            ForEach(entry.tagList, id: \.self) { tag in
+                                TagChip(tag: tag)
+                            }
                         }
                     }
                 }
@@ -346,8 +353,8 @@ struct TimerTabView: View {
                 Spacer()
 
                 Text(DurationFormatter.format((entry.endedAt ?? Date()).timeIntervalSince(entry.startedAt)))
-                    .font(.system(size: 13).monospacedDigit())
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 14, weight: .semibold).monospacedDigit())
+                    .foregroundStyle(.primary)
 
                 Button {
                     if let id = entry.id { viewModel.deleteEntry(id: id) }
@@ -359,13 +366,18 @@ struct TimerTabView: View {
                 .foregroundStyle(.secondary)
                 .opacity(hoveredEntryId == entry.id ? 1 : 0)
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 9)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(hoveredEntryId == entry.id ? projectColor.opacity(0.10) : Color(nsColor: .controlBackgroundColor).opacity(0.5))
+            )
             .contentShape(Rectangle())
-            .background(hoveredEntryId == entry.id ? Color(nsColor: .controlBackgroundColor) : Color.clear)
             .animation(.easeInOut(duration: 0.1), value: hoveredEntryId)
         }
         .buttonStyle(.plain)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 3)
         .onHover { hovering in
             hoveredEntryId = hovering ? entry.id : (hoveredEntryId == entry.id ? nil : hoveredEntryId)
         }
