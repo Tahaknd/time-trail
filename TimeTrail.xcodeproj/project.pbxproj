@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		001FB4E0421EBF96445BE547 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8580DC9BB228418F4331F8 /* SettingsViewModel.swift */; };
 		03F772ED3251DEFC3FAE86A1 /* TimeEntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4160C3B789C41AF80B9B2778 /* TimeEntryRepository.swift */; };
 		0BCACAC90986C885BC2C2B07 /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78056CD367E6C79875A88C6 /* ProjectRepository.swift */; };
 		0CDDA10DA4619C14842ED193 /* QuickStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA500134D6E2F9E00993550 /* QuickStatusView.swift */; };
@@ -23,22 +22,23 @@
 		4390E7C34D0C78B066184119 /* TimerControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776F1FD91263FA971E07A1FC /* TimerControllerTests.swift */; };
 		43FB1F36ED8CB6C189ADD33C /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2566201663BF7A2AB93F51A2 /* CSVExporter.swift */; };
 		4616EDEE3190569127BB78E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD665E990C24738DC54C86 /* AppDelegate.swift */; };
+		51CFD01ED96E078CFAE3BC95 /* ProjectEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AEBD57257F2899519AF7DC /* ProjectEditView.swift */; };
 		66D9E4BBBCFD03780C2F9625 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626C145B5B5F6632E432DA7B /* DatabaseManager.swift */; };
 		6AC0EE123999D91D4A3AE020 /* TimeEntryRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F077202663A80B760926452 /* TimeEntryRepositoryTests.swift */; };
 		71EF38C6A42B278BB0C015F3 /* ReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10477D701EBFDDFE5AC0C8DA /* ReportsViewModel.swift */; };
 		738D40BC1AD001E2ECD35453 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6E4472807768F2ED6D9878 /* Color+Hex.swift */; };
 		7C3D21139957920B423FF659 /* DurationFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B058371D20DEF4F230C891F /* DurationFormatter.swift */; };
 		80C7F1F0EC1D958FE47067A5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD166D788E19574B4CD3 /* OnboardingView.swift */; };
+		80EF8D7A17A5C5FF5EBFA890 /* ProjectsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6258F42312C017320E0B74 /* ProjectsTabView.swift */; };
 		8140B25E05350D9C66EA90E9 /* TimerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5F08D2805582074981BA3D /* TimerTabView.swift */; };
 		82D2B24937EA12BAE9789E63 /* TimeTrailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */; };
 		834D76CF809724B47D398820 /* ProjectRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */; };
 		8D53FE5E0C5CB57AE222122C /* CSVExporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063CD5C2254150D0464888B /* CSVExporterTests.swift */; };
-		90297B13782B4B6AB2D21BFB /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01218FD9994EDDF2DC72043 /* ProjectDetailView.swift */; };
 		9C9A3262EDEFAF861C919499 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A73F304F34BAF94A111BB /* TimerController.swift */; };
 		C292D5386ABBF758190DF78D /* TimeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DDB110CBFA2F09D1A896 /* TimeEntry.swift */; };
 		C55E206FA03261D5B1BA3846 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 5F55DD2965D5C4B859AEA79B /* GRDB */; };
 		CC121E44327FF6FC9C7A0E90 /* EntryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C7CD8E9B6631D35223CC0C /* EntryEditView.swift */; };
-		CD3E7A34E5DE07EA5B6D2C93 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC43CD61E3DF656B6A9F1FD /* SettingsView.swift */; };
+		D57F264C866F53E61A7916BC /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E607EB5557FE821029199C1 /* ProjectsViewModel.swift */; };
 		E7D914AB2A21DECF3729EDC7 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1C69C8C014E216EF84ED3 /* Project.swift */; };
 		EC390F9F54AA52606907EC25 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17DC382AC1EA31AD2F1FDBB /* TimerViewModel.swift */; };
 		FEF16090AFEA8E3533576770 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBAC5F5EAC65BDBE76125A5 /* StatusItemController.swift */; };
@@ -62,6 +62,7 @@
 		2C1311F58E1D6DC7AF5507B4 /* TimeTrailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeTrailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
 		3BA500134D6E2F9E00993550 /* QuickStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickStatusView.swift; sourceTree = "<group>"; };
+		3E6258F42312C017320E0B74 /* ProjectsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTabView.swift; sourceTree = "<group>"; };
 		3F4D9B4D4BF3A3BAB069562B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4160C3B789C41AF80B9B2778 /* TimeEntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryRepository.swift; sourceTree = "<group>"; };
 		4CE1DDB110CBFA2F09D1A896 /* TimeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntry.swift; sourceTree = "<group>"; };
@@ -75,9 +76,10 @@
 		87FAF29FD0061C7FA61A06AC /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		8B092DAB0A2C15052B5B1424 /* TimeTrailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrailApp.swift; sourceTree = "<group>"; };
 		8F077202663A80B760926452 /* TimeEntryRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeEntryRepositoryTests.swift; sourceTree = "<group>"; };
+		91AEBD57257F2899519AF7DC /* ProjectEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditView.swift; sourceTree = "<group>"; };
 		996CBBF7FC906A66868D234B /* ProjectRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepositoryTests.swift; sourceTree = "<group>"; };
 		99A1C69C8C014E216EF84ED3 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		9E8580DC9BB228418F4331F8 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		9E607EB5557FE821029199C1 /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		AD665F4493C2BCE22B74EABD /* Migrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrations.swift; sourceTree = "<group>"; };
 		B727BD3716D66EE44C0BEB37 /* TimeTrail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTrail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B918900A96AB533BC6C68ECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -85,8 +87,6 @@
 		C17DC382AC1EA31AD2F1FDBB /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		C3549479341B30A05951782B /* DurationFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationFormatterTests.swift; sourceTree = "<group>"; };
 		CB14AD166D788E19574B4CD3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		CFC43CD61E3DF656B6A9F1FD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		D01218FD9994EDDF2DC72043 /* ProjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		D4C7CD8E9B6631D35223CC0C /* EntryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditView.swift; sourceTree = "<group>"; };
 		F063CD5C2254150D0464888B /* CSVExporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVExporterTests.swift; sourceTree = "<group>"; };
 		F78056CD367E6C79875A88C6 /* ProjectRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRepository.swift; sourceTree = "<group>"; };
@@ -125,20 +125,13 @@
 			isa = PBXGroup;
 			children = (
 				34B10D5B8DADCB3E6BA6F631 /* MainWindowView.swift */,
+				91AEBD57257F2899519AF7DC /* ProjectEditView.swift */,
+				3E6258F42312C017320E0B74 /* ProjectsTabView.swift */,
+				9E607EB5557FE821029199C1 /* ProjectsViewModel.swift */,
 				BF5F08D2805582074981BA3D /* TimerTabView.swift */,
 				C17DC382AC1EA31AD2F1FDBB /* TimerViewModel.swift */,
 			);
 			path = MainWindow;
-			sourceTree = "<group>";
-		};
-		1D54D5ABC1A2AD60B09CF83D /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				D01218FD9994EDDF2DC72043 /* ProjectDetailView.swift */,
-				CFC43CD61E3DF656B6A9F1FD /* SettingsView.swift */,
-				9E8580DC9BB228418F4331F8 /* SettingsViewModel.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		1D6044341F082CE76C7C260D /* Reports */ = {
@@ -200,7 +193,6 @@
 				2285BAF593486678B2FF8929 /* EntryEdit */,
 				0CA75F363B66E8581777B00C /* MainWindow */,
 				1D6044341F082CE76C7C260D /* Reports */,
-				1D54D5ABC1A2AD60B09CF83D /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -380,13 +372,13 @@
 				31603017418C5B6656331D4E /* Migrations.swift in Sources */,
 				80C7F1F0EC1D958FE47067A5 /* OnboardingView.swift in Sources */,
 				E7D914AB2A21DECF3729EDC7 /* Project.swift in Sources */,
-				90297B13782B4B6AB2D21BFB /* ProjectDetailView.swift in Sources */,
+				51CFD01ED96E078CFAE3BC95 /* ProjectEditView.swift in Sources */,
 				0BCACAC90986C885BC2C2B07 /* ProjectRepository.swift in Sources */,
+				80EF8D7A17A5C5FF5EBFA890 /* ProjectsTabView.swift in Sources */,
+				D57F264C866F53E61A7916BC /* ProjectsViewModel.swift in Sources */,
 				0CDDA10DA4619C14842ED193 /* QuickStatusView.swift in Sources */,
 				361807EAEA4AB6010AC44F34 /* ReportsView.swift in Sources */,
 				71EF38C6A42B278BB0C015F3 /* ReportsViewModel.swift in Sources */,
-				CD3E7A34E5DE07EA5B6D2C93 /* SettingsView.swift in Sources */,
-				001FB4E0421EBF96445BE547 /* SettingsViewModel.swift in Sources */,
 				FEF16090AFEA8E3533576770 /* StatusItemController.swift in Sources */,
 				179E259EABA63A3B4AD8A711 /* TimeAggregator.swift in Sources */,
 				C292D5386ABBF758190DF78D /* TimeEntry.swift in Sources */,

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @MainActor
-final class SettingsViewModel: ObservableObject {
+final class ProjectsViewModel: ObservableObject {
     @Published private(set) var projects: [Project] = []
     @Published var errorMessage: String?
 
@@ -32,29 +32,15 @@ final class SettingsViewModel: ObservableObject {
         }
     }
 
-    func rename(_ project: Project, to name: String) {
+    func update(_ project: Project, name: String, color: String) {
         let trimmed = name.trimmingCharacters(in: .whitespaces)
-        guard !trimmed.isEmpty, trimmed != project.name else { return }
+        guard !trimmed.isEmpty else { return }
         var updated = project
         updated.name = trimmed
-        do {
-            try projectRepo.update(updated)
-            if let idx = projects.firstIndex(where: { $0.id == project.id }) {
-                projects[idx] = updated
-            }
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func updateColor(of project: Project, to color: String) {
-        var updated = project
         updated.color = color
         do {
             try projectRepo.update(updated)
-            if let idx = projects.firstIndex(where: { $0.id == project.id }) {
-                projects[idx] = updated
-            }
+            load()
         } catch {
             errorMessage = error.localizedDescription
         }

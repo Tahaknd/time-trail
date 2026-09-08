@@ -10,9 +10,9 @@ private enum SidebarItem: String, CaseIterable, Identifiable {
 
     var systemImage: String {
         switch self {
-        case .timer: return "play.circle"
-        case .reports: return "chart.bar"
-        case .projects: return "folder"
+        case .timer: return "play.circle.fill"
+        case .reports: return "chart.bar.fill"
+        case .projects: return "folder.fill"
         }
     }
 }
@@ -22,7 +22,7 @@ struct MainWindowView: View {
 
     @StateObject private var timerViewModel = TimerViewModel(db: DatabaseManager.shared.dbQueue)
     @StateObject private var reportsViewModel = ReportsViewModel(db: DatabaseManager.shared.dbQueue)
-    @StateObject private var settingsViewModel = SettingsViewModel(
+    @StateObject private var projectsViewModel = ProjectsViewModel(
         projectRepo: ProjectRepository(db: DatabaseManager.shared.dbQueue)
     )
 
@@ -31,8 +31,9 @@ struct MainWindowView: View {
             List(SidebarItem.allCases, selection: $selection) { item in
                 Label(item.rawValue, systemImage: item.systemImage)
                     .tag(item)
+                    .padding(.vertical, 2)
             }
-            .navigationSplitViewColumnWidth(min: 140, ideal: 160)
+            .navigationSplitViewColumnWidth(min: 170, ideal: 190)
         } detail: {
             switch selection {
             case .timer, .none:
@@ -40,10 +41,10 @@ struct MainWindowView: View {
             case .reports:
                 ReportsView(viewModel: reportsViewModel)
             case .projects:
-                SettingsView(viewModel: settingsViewModel)
+                ProjectsTabView(viewModel: projectsViewModel)
             }
         }
         .navigationTitle("TimeTrail")
-        .frame(minWidth: 800, minHeight: 500)
+        .frame(minWidth: 820, minHeight: 540)
     }
 }

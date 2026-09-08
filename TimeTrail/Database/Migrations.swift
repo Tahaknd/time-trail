@@ -51,6 +51,12 @@ enum Migrations {
             }
         }
 
+        migrator.registerMigration("v4_time_entry_tags") { db in
+            try db.alter(table: "time_entry") { t in
+                t.add(column: "tags", .text)
+            }
+        }
+
         try migrator.migrate(writer)
     }
 }

@@ -5,9 +5,11 @@ import GRDB
 final class EntryEditViewModel: ObservableObject {
     @Published var projectId: Int64?
     @Published var description: String = ""
+    @Published var tagsText: String = ""
     @Published var startedAt: Date
     @Published var endedAt: Date
     @Published private(set) var projects: [Project] = []
+    @Published private(set) var knownTags: [String] = []
     @Published var errorMessage: String?
 
     let isNew: Bool
@@ -24,6 +26,7 @@ final class EntryEditViewModel: ObservableObject {
             existingId = entry.id
             projectId = entry.projectId
             description = entry.description ?? ""
+            tagsText = entry.tagList.joined(separator: ", ")
             startedAt = entry.startedAt
             endedAt = entry.endedAt ?? Date()
         } else {
@@ -36,6 +39,17 @@ final class EntryEditViewModel: ObservableObject {
         }
 
         projects = (try? projectRepo.fetchAll()) ?? []
+        if let all = try? entryRepo.fetchAll() {
+            var seen = Set<String>()
+            var ordered: [String] = []
+            for e in all {
+                for tag in e.tagList where !seen.contains(tag) {
+                    seen.insert(tag)
+                    ordered.append(tag)
+                }
+            }
+            knownTags = ordered.sorted()
+        }
     }
 
     var canSave: Bool {
@@ -46,6 +60,7 @@ final class EntryEditViewModel: ObservableObject {
         guard let projectId else { return false }
         let trimmedDescription = description.trimmingCharacters(in: .whitespacesAndNewlines)
         let finalDescription: String? = trimmedDescription.isEmpty ? nil : trimmedDescription
+        let finalTags = TimeEntry.joinTags(tagsText.split(separator: ",").map(String.init))
 
         do {
             if let existingId {
@@ -54,7 +69,8 @@ final class EntryEditViewModel: ObservableObject {
                     projectId: projectId,
                     description: finalDescription,
                     startedAt: startedAt,
-                    endedAt: endedAt
+                    endedAt: endedAt,
+                    tags: finalTags
                 )
                 try entryRepo.update(entry)
             } else {
@@ -62,7 +78,8 @@ final class EntryEditViewModel: ObservableObject {
                     projectId: projectId,
                     description: finalDescription,
                     startedAt: startedAt,
-                    endedAt: endedAt
+                    endedAt: endedAt,
+                    tags: finalTags
                 )
                 try entryRepo.insert(&entry)
             }

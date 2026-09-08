@@ -62,6 +62,57 @@ final class ReportsViewModel: ObservableObject {
         }
     }
 
+    // MARK: - Date navigation
+
+    func goToPreviousPeriod() {
+        let cal = Calendar.current
+        switch period {
+        case .daily:
+            referenceDate = cal.date(byAdding: .day, value: -1, to: referenceDate) ?? referenceDate
+        case .weekly:
+            referenceDate = cal.date(byAdding: .day, value: -7, to: referenceDate) ?? referenceDate
+        }
+    }
+
+    func goToNextPeriod() {
+        let cal = Calendar.current
+        switch period {
+        case .daily:
+            referenceDate = cal.date(byAdding: .day, value: 1, to: referenceDate) ?? referenceDate
+        case .weekly:
+            referenceDate = cal.date(byAdding: .day, value: 7, to: referenceDate) ?? referenceDate
+        }
+    }
+
+    func goToToday() {
+        referenceDate = Date()
+    }
+
+    var isCurrentPeriod: Bool {
+        Calendar.current.isDate(referenceDate, inSameDayAs: Date())
+    }
+
+    var dateRangeLabel: String {
+        let cal = Calendar.current
+        switch period {
+        case .daily:
+            if cal.isDateInToday(referenceDate) { return "Today" }
+            if cal.isDateInYesterday(referenceDate) { return "Yesterday" }
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            return formatter.string(from: referenceDate)
+        case .weekly:
+            let (start, end) = dateRange
+            let lastDay = cal.date(byAdding: .day, value: -1, to: end) ?? end
+            let sameMonth = cal.isDate(start, equalTo: lastDay, toGranularity: .month)
+            let startFormatter = DateFormatter()
+            startFormatter.dateFormat = sameMonth ? "MMM d" : "MMM d, yyyy"
+            let endFormatter = DateFormatter()
+            endFormatter.dateFormat = "MMM d, yyyy"
+            return "\(startFormatter.string(from: start)) – \(endFormatter.string(from: lastDay))"
+        }
+    }
+
     // MARK: - Private
 
     var dateRange: (Date, Date) {

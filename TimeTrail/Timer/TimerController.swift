@@ -13,7 +13,7 @@ final class TimerController: ObservableObject {
     }
 
     @discardableResult
-    func start(projectId: Int64, description: String? = nil) throws -> TimeEntry {
+    func start(projectId: Int64, description: String? = nil, tags: String? = nil) throws -> TimeEntry {
         if runningEntry != nil {
             try stop()
         }
@@ -21,7 +21,8 @@ final class TimerController: ObservableObject {
             projectId: projectId,
             description: description,
             startedAt: Date(),
-            endedAt: nil
+            endedAt: nil,
+            tags: tags
         )
         try repository.insert(&entry)
         runningEntry = entry

@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ReportsView: View {
     @StateObject private var viewModel: ReportsViewModel
+    @State private var showingDatePicker = false
 
     init(viewModel: ReportsViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -24,7 +25,7 @@ struct ReportsView: View {
                 }
             }
         }
-        .frame(minWidth: 600, minHeight: 450)
+        .background(Color(nsColor: .textBackgroundColor))
         .onAppear { viewModel.load() }
         .onChange(of: viewModel.period, perform: { _ in viewModel.load() })
         .onChange(of: viewModel.referenceDate, perform: { _ in viewModel.load() })
@@ -41,7 +42,7 @@ struct ReportsView: View {
     // MARK: - Toolbar
 
     private var toolbar: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 16) {
             Picker("", selection: $viewModel.period) {
                 ForEach(ReportPeriod.allCases) { p in
                     Text(p.rawValue).tag(p)
@@ -50,19 +51,80 @@ struct ReportsView: View {
             .pickerStyle(.segmented)
             .fixedSize()
 
-            DatePicker("", selection: $viewModel.referenceDate, displayedComponents: .date)
-                .labelsHidden()
+            dateNavigator
 
             Spacer()
 
             Text(DurationFormatter.format(viewModel.totalSeconds))
-                .font(.system(size: 13, weight: .semibold).monospacedDigit())
+                .font(.system(size: 15, weight: .semibold).monospacedDigit())
 
-            Button("Export CSV") { viewModel.exportCSV() }
-                .buttonStyle(.borderedProminent)
+            Button {
+                viewModel.exportCSV()
+            } label: {
+                Label("Export CSV", systemImage: "square.and.arrow.up")
+            }
+            .buttonStyle(.borderedProminent)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 14)
+    }
+
+    private var dateNavigator: some View {
+        HStack(spacing: 4) {
+            Button {
+                viewModel.goToPreviousPeriod()
+            } label: {
+                Image(systemName: "chevron.left")
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.secondary)
+
+            Button {
+                showingDatePicker = true
+            } label: {
+                Text(viewModel.dateRangeLabel)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.primary)
+                    .frame(minWidth: 130)
+            }
+            .buttonStyle(.plain)
+            .popover(isPresented: $showingDatePicker) {
+                VStack(spacing: 8) {
+                    DatePicker(
+                        "",
+                        selection: $viewModel.referenceDate,
+                        displayedComponents: .date
+                    )
+                    .datePickerStyle(.graphical)
+                    .labelsHidden()
+
+                    Button("Today") {
+                        viewModel.goToToday()
+                        showingDatePicker = false
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding(12)
+            }
+
+            Button {
+                viewModel.goToNextPeriod()
+            } label: {
+                Image(systemName: "chevron.right")
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.secondary)
+
+            if !viewModel.isCurrentPeriod {
+                Button("Today") {
+                    viewModel.goToToday()
+                }
+                .buttonStyle(.plain)
+                .font(.system(size: 12, weight: .medium))
+                .foregroundStyle(Color.accentColor)
+                .padding(.leading, 4)
+            }
+        }
     }
 
     // MARK: - Bar chart
@@ -76,6 +138,7 @@ struct ReportsView: View {
             .foregroundStyle(
                 (total.color.flatMap { Color(hex: $0) }) ?? Color.secondary
             )
+            .cornerRadius(4)
         }
         .chartYAxisLabel("Hours")
         .frame(height: 200)
@@ -92,12 +155,8 @@ struct ReportsView: View {
                 }
             }
         }
-        .background(.background)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .overlay(
-            RoundedRectangle(cornerRadius: 8)
-                .stroke(.separator, lineWidth: 0.5)
-        )
+        .background(Color(nsColor: .controlBackgroundColor))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     private func rowView(for total: TimeAggregator.ProjectTotal) -> some View {
@@ -112,19 +171,23 @@ struct ReportsView: View {
                 .font(.system(size: 13).monospacedDigit())
                 .foregroundStyle(.secondary)
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
     }
 
     // MARK: - Empty state
 
     private var emptyState: some View {
-        VStack(spacing: 12) {
-            Image(systemName: "clock")
-                .font(.system(size: 48))
+        VStack(spacing: 10) {
+            Image(systemName: "chart.bar")
+                .font(.system(size: 36))
+                .foregroundStyle(.tertiary)
+            Text("No activity recorded")
+                .font(.system(size: 14, weight: .medium))
                 .foregroundStyle(.secondary)
-            Text("No activity recorded for this period.")
-                .foregroundStyle(.secondary)
+            Text("Nothing tracked for this period yet.")
+                .font(.system(size: 12))
+                .foregroundStyle(.tertiary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

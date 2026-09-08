@@ -54,11 +54,24 @@ final class TimerViewModel: ObservableObject {
         allProjects.first(where: { $0.id == id })?.color
     }
 
+    /// Distinct tag names seen across recently-loaded entries, for quick-pick suggestions.
+    var knownTags: [String] {
+        var seen = Set<String>()
+        var ordered: [String] = []
+        for entry in recentEntries {
+            for tag in entry.tagList where !seen.contains(tag) {
+                seen.insert(tag)
+                ordered.append(tag)
+            }
+        }
+        return ordered.sorted()
+    }
+
     // MARK: - Timer control
 
-    func startTimer(projectId: Int64, description: String? = nil) {
+    func startTimer(projectId: Int64, description: String? = nil, tags: String? = nil) {
         do {
-            try timerController.start(projectId: projectId, description: description)
+            try timerController.start(projectId: projectId, description: description, tags: tags)
             refresh()
         } catch {
             errorMessage = error.localizedDescription

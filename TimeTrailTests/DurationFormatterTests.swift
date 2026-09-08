@@ -38,4 +38,30 @@ final class DurationFormatterTests: XCTestCase {
     func testLargeDuration() {
         XCTAssertEqual(DurationFormatter.format(8 * 3600 + 15 * 60), "8h 15m")
     }
+
+    // MARK: - formatClock
+
+    func testClock_zeroSeconds() {
+        XCTAssertEqual(DurationFormatter.formatClock(0), "0:00")
+    }
+
+    func testClock_underOneMinute() {
+        XCTAssertEqual(DurationFormatter.formatClock(45), "0:45")
+    }
+
+    func testClock_negativeTreatedAsZero() {
+        XCTAssertEqual(DurationFormatter.formatClock(-10), "0:00")
+    }
+
+    func testClock_minutesAndSeconds() {
+        XCTAssertEqual(DurationFormatter.formatClock(125), "2:05")
+    }
+
+    func testClock_exactlyOneHour() {
+        XCTAssertEqual(DurationFormatter.formatClock(3600), "1:00:00")
+    }
+
+    func testClock_hoursMinutesSeconds() {
+        XCTAssertEqual(DurationFormatter.formatClock(3661), "1:01:01")
+    }
 }
