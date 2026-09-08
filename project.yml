@@ -32,6 +32,7 @@ targets:
         CFBundleVersion: "1"
         CFBundleShortVersionString: "0.1.0"
         NSHumanReadableCopyright: ""
+        LSApplicationCategoryType: public.app-category.productivity
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.timetrail.app
