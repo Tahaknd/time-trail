@@ -60,20 +60,7 @@ struct MenuBarView: View {
     }
 
     private func projectColor(_ hex: String?) -> Color {
-        guard let hex else { return .secondary }
-        return Color(hex: hex) ?? .secondary
-    }
-}
-
-// MARK: - Color hex initializer
-
-private extension Color {
-    init?(hex: String) {
-        let raw = hex.trimmingCharacters(in: CharacterSet(charactersIn: "#").union(.whitespaces))
-        guard raw.count == 6, let value = UInt64(raw, radix: 16) else { return nil }
-        let r = Double((value >> 16) & 0xFF) / 255
-        let g = Double((value >> 8) & 0xFF) / 255
-        let b = Double(value & 0xFF) / 255
-        self.init(red: r, green: g, blue: b)
+        guard let hex, !hex.isEmpty else { return .secondary }
+        return Color(hex: hex)
     }
 }
