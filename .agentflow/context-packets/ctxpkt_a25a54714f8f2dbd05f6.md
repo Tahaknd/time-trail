@@ -1,0 +1,29 @@
+# Context Packet ctxpkt_a25a54714f8f2dbd05f6
+
+- Title: Onboarding & permissions flow
+- Source Type: sibling_output
+- Source Key: t_1788856192780_ef1znw
+- Content Type: markdown
+- Strategy: markdown_focus
+- Original Tokens: 401
+- Compact Tokens: 244
+
+## Original Content
+Build succeeded, 20/20 tests pass, committed.
+
+## Summary
+
+**What was built** — `TimeTrail/Onboarding/` (4 new files) + updated `AppDelegate.swift`:
+
+| File | Role |
+|---|---|
+| `AccessibilityPermissionChecker.swift` | `ObservableObject` that wraps `AXIsProcessTrusted()`, polls every 1 s via `Timer`, stops automatically when permission is granted |
+| `WelcomeView.swift` | Step 1 — explains menu-bar-only nature and lists features; "Get Started" advances to step 2 |
+| `AccessibilityPermissionView.swift` | Step 2 — shows lock/checkmark icon, "Open System Settings" deep-link to `Privacy_Accessibility` pane, polls for permission, "Continue" button enabled only when `AXIsProcessTrusted()` returns `true` |
+| `OnboardingView.swift` | Container that owns the `AccessibilityPermissionChecker` as a `@StateObject` and routes between the two steps |
+| `AppDelegate.swift` | Creates the status item immediately on launch, then conditionally opens an `NSWindow` hosting `OnboardingView` if `UserDefaults["didCompleteOnboarding"]` is `false`; sets the flag and closes the window on completion |
+
+**Key decisions:**
+- Status item is set up regardless of onboarding state (always visible in menu bar).
+- The onboarding `NSWindow` uses `isReleasedWhenClosed = false` and holds a strong reference so it stays alive while open. If the user closes the window via the red button before completing, the flag is never set and the flow shows again on next launch.
+- `xcodegen generate` was used to regenerate `project.pbxproj`, ensuring the `Onboarding/` group and all 4 files are properly wired into the build target.
