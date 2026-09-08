@@ -28,7 +28,6 @@ targets:
         CFBundleIdentifier: com.timetrail.app
         CFBundleVersion: "1"
         CFBundleShortVersionString: "0.1.0"
-        LSUIElement: true
         NSHumanReadableCopyright: ""
     settings:
       base:

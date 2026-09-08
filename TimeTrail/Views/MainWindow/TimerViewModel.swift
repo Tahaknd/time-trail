@@ -1,9 +1,9 @@
 import Foundation
 import GRDB
 
-final class MenuBarViewModel: ObservableObject {
+final class TimerViewModel: ObservableObject {
     @Published private(set) var allProjects: [Project] = []
-    @Published private(set) var todayEntries: [TimeEntry] = []
+    @Published private(set) var recentEntries: [TimeEntry] = []
     @Published private(set) var runningEntry: TimeEntry?
     @Published var errorMessage: String?
 
@@ -19,15 +19,18 @@ final class MenuBarViewModel: ObservableObject {
         runningEntry = timerController.runningEntry
     }
 
-    /// Reloads today's entries and the project list. Must be called from the main thread.
+    /// Reloads the project list and the last 14 days of entries. Must be called from the main thread.
     func refresh() {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
-        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else { return }
+        guard
+            let end = calendar.date(byAdding: .day, value: 1, to: startOfDay),
+            let start = calendar.date(byAdding: .day, value: -14, to: startOfDay)
+        else { return }
 
         do {
             allProjects = try projectRepo.fetchAll()
-            todayEntries = try entryRepo.fetchByDateRange(from: startOfDay, to: endOfDay)
+            recentEntries = try entryRepo.fetchByDateRange(from: start, to: end)
             runningEntry = timerController.runningEntry
         } catch {
             // Fail silently — stale data stays visible until the next successful refresh.
@@ -35,10 +38,12 @@ final class MenuBarViewModel: ObservableObject {
     }
 
     var totalSecondsToday: TimeInterval {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
         let now = Date()
-        return todayEntries.reduce(0) { total, entry in
-            total + (entry.endedAt ?? now).timeIntervalSince(entry.startedAt)
-        }
+        return recentEntries
+            .filter { $0.startedAt >= startOfDay }
+            .reduce(0) { $0 + ($1.endedAt ?? now).timeIntervalSince($1.startedAt) }
     }
 
     func projectName(for id: Int64) -> String {
@@ -70,25 +75,6 @@ final class MenuBarViewModel: ObservableObject {
     }
 
     // MARK: - Entry editing
-
-    func addManualEntry(projectId: Int64, description: String?, start: Date, end: Date) {
-        var entry = TimeEntry(projectId: projectId, description: description, startedAt: start, endedAt: end)
-        do {
-            try entryRepo.insert(&entry)
-            refresh()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func updateEntry(_ entry: TimeEntry) {
-        do {
-            try entryRepo.update(entry)
-            refresh()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
 
     func deleteEntry(id: Int64) {
         do {

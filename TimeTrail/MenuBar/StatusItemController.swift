@@ -2,19 +2,21 @@ import AppKit
 import SwiftUI
 import GRDB
 
-/// Owns the NSStatusItem and drives menu-bar display.
-/// Must be created on the main thread; all methods are main-thread-only.
+/// Owns the NSStatusItem — a quick-access surface for start/stop and jumping
+/// to the main window. The full timer + entries UI lives in the main window.
 final class StatusItemController: NSObject, NSMenuDelegate {
     private let statusItem: NSStatusItem
-    private let viewModel: MenuBarViewModel
-    private let hosting: NSHostingView<MenuBarView>
+    private let viewModel: TimerViewModel
+    private let hosting: NSHostingView<QuickStatusView>
     private var menuRefreshTimer: Timer?
     private var titleRefreshTimer: Timer?
+    private let onOpenMainWindow: () -> Void
 
-    init(db: DatabaseQueue) {
-        viewModel = MenuBarViewModel(db: db)
+    init(db: DatabaseQueue, onOpenMainWindow: @escaping () -> Void) {
+        viewModel = TimerViewModel(db: db)
+        self.onOpenMainWindow = onOpenMainWindow
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        hosting = NSHostingView(rootView: MenuBarView(viewModel: viewModel))
+        hosting = NSHostingView(rootView: QuickStatusView(viewModel: viewModel, onOpenMainWindow: onOpenMainWindow))
         super.init()
 
         hosting.sizingOptions = .intrinsicContentSize
@@ -47,25 +49,18 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         let contentItem = NSMenuItem()
         contentItem.view = hosting
 
-        // nil target routes through the responder chain to AppDelegate.openReports/openSettings
-        let reportsItem = NSMenuItem(
-            title: "Reports\u{2026}",
-            action: NSSelectorFromString("openReports"),
-            keyEquivalent: "r"
+        let openItem = NSMenuItem(
+            title: "Open TimeTrail",
+            action: #selector(handleOpenMainWindow),
+            keyEquivalent: "o"
         )
-
-        let settingsItem = NSMenuItem(
-            title: "Settings\u{2026}",
-            action: NSSelectorFromString("openSettings"),
-            keyEquivalent: ","
-        )
+        openItem.target = self
 
         let menu = NSMenu()
         menu.delegate = self
         menu.addItem(contentItem)
         menu.addItem(.separator())
-        menu.addItem(reportsItem)
-        menu.addItem(settingsItem)
+        menu.addItem(openItem)
         menu.addItem(.separator())
         menu.addItem(
             withTitle: "Quit TimeTrail",
@@ -74,6 +69,10 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         )
 
         statusItem.menu = menu
+    }
+
+    @objc private func handleOpenMainWindow() {
+        onOpenMainWindow()
     }
 
     /// Ticks every second while a timer is running (for a live-updating
