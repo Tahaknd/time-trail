@@ -7,6 +7,8 @@ struct MenuBarView: View {
         VStack(alignment: .leading, spacing: 0) {
             headerRow
             Divider().padding(.horizontal, 8)
+            workingOnRow
+            Divider().padding(.horizontal, 8)
             projectList
         }
         .frame(width: 260)
@@ -14,6 +16,44 @@ struct MenuBarView: View {
     }
 
     // MARK: - Subviews
+
+    private var workingOnRow: some View {
+        HStack {
+            Text("Working on")
+                .font(.system(size: 12))
+                .foregroundColor(.secondary)
+            Spacer()
+            Menu {
+                Button("Auto (by app/window)") {
+                    viewModel.setActiveProject(nil)
+                }
+                if !viewModel.allProjects.isEmpty {
+                    Divider()
+                    ForEach(viewModel.allProjects, id: \.id) { project in
+                        Button(project.name) {
+                            viewModel.setActiveProject(project.id)
+                        }
+                    }
+                }
+            } label: {
+                Text(activeProjectLabel)
+                    .font(.system(size: 12, weight: .medium))
+            }
+            .menuStyle(.borderlessButton)
+            .fixedSize()
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 6)
+    }
+
+    private var activeProjectLabel: String {
+        guard let id = viewModel.activeOverrideProjectId,
+              let project = viewModel.allProjects.first(where: { $0.id == id })
+        else {
+            return "Auto"
+        }
+        return project.name
+    }
 
     private var headerRow: some View {
         HStack {

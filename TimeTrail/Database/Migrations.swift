@@ -28,6 +28,13 @@ enum Migrations {
             }
         }
 
+        migrator.registerMigration("v2_segment_override_project") { db in
+            try db.alter(table: "activity_segment") { t in
+                t.add(column: "override_project_id", .integer)
+                    .references("project", onDelete: .setNull)
+            }
+        }
+
         try migrator.migrate(writer)
     }
 }

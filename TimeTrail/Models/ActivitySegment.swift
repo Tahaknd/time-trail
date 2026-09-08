@@ -8,6 +8,7 @@ struct ActivitySegment: Codable, FetchableRecord, MutablePersistableRecord {
     var windowTitle: String?
     var startedAt: Date
     var endedAt: Date?
+    var overrideProjectId: Int64? = nil
 
     static let databaseTableName = "activity_segment"
 
@@ -18,6 +19,7 @@ struct ActivitySegment: Codable, FetchableRecord, MutablePersistableRecord {
         case windowTitle = "window_title"
         case startedAt = "started_at"
         case endedAt = "ended_at"
+        case overrideProjectId = "override_project_id"
     }
 
     mutating func didInsert(_ inserted: InsertionSuccess) {

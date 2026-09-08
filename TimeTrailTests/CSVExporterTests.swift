@@ -11,7 +11,8 @@ final class CSVExporterTests: XCTestCase {
         appName: String = "TestApp",
         windowTitle: String? = nil,
         start: TimeInterval,
-        end: TimeInterval?
+        end: TimeInterval?,
+        overrideProjectId: Int64? = nil
     ) -> ActivitySegment {
         ActivitySegment(
             id: nil,
@@ -19,7 +20,8 @@ final class CSVExporterTests: XCTestCase {
             appName: appName,
             windowTitle: windowTitle,
             startedAt: t0.addingTimeInterval(start),
-            endedAt: end.map { t0.addingTimeInterval($0) }
+            endedAt: end.map { t0.addingTimeInterval($0) },
+            overrideProjectId: overrideProjectId
         )
     }
 
@@ -145,5 +147,24 @@ final class CSVExporterTests: XCTestCase {
         XCTAssertTrue(lines[1].contains("Work"))
         XCTAssertTrue(lines[1].contains("TestApp"))
         XCTAssertTrue(lines[1].contains("300"))
+    }
+
+    // MARK: - Manual project override
+
+    func testOverrideProjectId_winsOverRuleMatch() {
+        let ruleProject = project(id: 1, name: "RuleMatched")
+        let overrideProject = project(id: 2, name: "ManuallyPicked")
+        let r = rule(projectId: 1, bundleId: "com.example.app")
+        let s = seg(start: 0, end: 600, overrideProjectId: 2)
+
+        let rows = CSVExporter.buildRows(
+            segments: [s],
+            rules: [r],
+            projects: [ruleProject, overrideProject],
+            now: t0
+        )
+
+        XCTAssertEqual(rows.count, 1)
+        XCTAssertEqual(rows[0].project, "ManuallyPicked")
     }
 }

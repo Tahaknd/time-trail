@@ -11,7 +11,8 @@ final class TimeAggregatorTests: XCTestCase {
         bundleId: String = "com.example.app",
         windowTitle: String? = nil,
         start: TimeInterval,
-        end: TimeInterval?
+        end: TimeInterval?,
+        overrideProjectId: Int64? = nil
     ) -> ActivitySegment {
         ActivitySegment(
             id: nil,
@@ -19,7 +20,8 @@ final class TimeAggregatorTests: XCTestCase {
             appName: "App",
             windowTitle: windowTitle,
             startedAt: t0.addingTimeInterval(start),
-            endedAt: end.map { t0.addingTimeInterval($0) }
+            endedAt: end.map { t0.addingTimeInterval($0) },
+            overrideProjectId: overrideProjectId
         )
     }
 
@@ -171,5 +173,56 @@ final class TimeAggregatorTests: XCTestCase {
         let beta = try XCTUnwrap(totalMap["Beta"])
         XCTAssertEqual(alpha, 900, accuracy: 0.001)
         XCTAssertEqual(beta, 1800, accuracy: 0.001)
+    }
+
+    // MARK: - Manual project override
+
+    func testOverrideProjectId_winsOverRuleMatch() {
+        let ruleProject = project(id: 1, name: "RuleMatched")
+        let overrideProject = project(id: 2, name: "ManuallyPicked")
+        let r = rule(projectId: 1, bundleId: "com.example.app")
+        let s = seg(start: 0, end: 600, overrideProjectId: 2)
+
+        let result = TimeAggregator.aggregate(
+            segments: [s],
+            rules: [r],
+            projects: [ruleProject, overrideProject],
+            now: t0
+        )
+
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result[0].projectName, "ManuallyPicked")
+    }
+
+    func testOverrideProjectId_winsOverUnassigned() {
+        let overrideProject = project(id: 2, name: "ManuallyPicked")
+        let s = seg(bundleId: "com.unmapped.app", start: 0, end: 600, overrideProjectId: 2)
+
+        let result = TimeAggregator.aggregate(
+            segments: [s],
+            rules: [],
+            projects: [overrideProject],
+            now: t0
+        )
+
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result[0].projectName, "ManuallyPicked")
+    }
+
+    func testOverrideProjectId_unknownProject_fallsBackToRuleMatching() {
+        let ruleProject = project(id: 1, name: "RuleMatched")
+        let r = rule(projectId: 1, bundleId: "com.example.app")
+        // References a project id that no longer exists (e.g. deleted project).
+        let s = seg(start: 0, end: 600, overrideProjectId: 999)
+
+        let result = TimeAggregator.aggregate(
+            segments: [s],
+            rules: [r],
+            projects: [ruleProject],
+            now: t0
+        )
+
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result[0].projectName, "RuleMatched")
     }
 }

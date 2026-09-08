@@ -7,6 +7,7 @@ final class TrackingEngine {
     private let repository: ActivitySegmentRepository
     private let idleMonitor: IdleMonitor
     private let accessibilityReader: AccessibilityReader
+    private let activeProjectStore: ActiveProjectStore
 
     private var currentSegment: ActivitySegment?
     private var isIdle = false
@@ -17,11 +18,13 @@ final class TrackingEngine {
     init(
         repository: ActivitySegmentRepository,
         idleMonitor: IdleMonitor = IdleMonitor(),
-        accessibilityReader: AccessibilityReader = AccessibilityReader()
+        accessibilityReader: AccessibilityReader = AccessibilityReader(),
+        activeProjectStore: ActiveProjectStore = .shared
     ) {
         self.repository = repository
         self.idleMonitor = idleMonitor
         self.accessibilityReader = accessibilityReader
+        self.activeProjectStore = activeProjectStore
     }
 
     func start() {
@@ -31,6 +34,13 @@ final class TrackingEngine {
             self,
             selector: #selector(appDidActivate(_:)),
             name: NSWorkspace.didActivateApplicationNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(activeProjectDidChange),
+            name: ActiveProjectStore.didChangeNotification,
             object: nil
         )
 
@@ -52,6 +62,15 @@ final class TrackingEngine {
         pollTimer?.invalidate()
         pollTimer = nil
         NSWorkspace.shared.notificationCenter.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: ActiveProjectStore.didChangeNotification, object: nil)
+    }
+
+    /// A manual project switch mid-activity should split the segment so the
+    /// time before and after the switch is attributed correctly.
+    @objc private func activeProjectDidChange() {
+        guard !isIdle, let frontApp = NSWorkspace.shared.frontmostApplication else { return }
+        closeCurrentSegment()
+        startSegment(for: frontApp)
     }
 
     // MARK: - Private
@@ -91,7 +110,8 @@ final class TrackingEngine {
             appName: app.localizedName ?? "",
             windowTitle: windowTitle,
             startedAt: Date(),
-            endedAt: nil
+            endedAt: nil,
+            overrideProjectId: activeProjectStore.currentProjectId
         )
         try? repository.insert(&segment)
         currentSegment = segment

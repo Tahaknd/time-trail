@@ -33,6 +33,13 @@ enum CSVExporter {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
 
+        let projectIndex = Dictionary(
+            uniqueKeysWithValues: projects.compactMap { p -> (Int64, Project)? in
+                guard let id = p.id else { return nil }
+                return (id, p)
+            }
+        )
+
         typealias Key = String
         var buckets: [Key: (date: String, project: String, app: String, seconds: TimeInterval)] = [:]
 
@@ -41,13 +48,18 @@ enum CSVExporter {
             let duration = end.timeIntervalSince(seg.startedAt)
             guard duration > 0 else { continue }
 
-            let match = RuleMatcher.match(
-                bundleId: seg.appBundleId,
-                windowTitle: seg.windowTitle,
-                rules: rules,
-                projects: projects
-            )
-            let projectName = match?.projectName ?? "Unassigned"
+            let projectName: String
+            if let overrideId = seg.overrideProjectId, let project = projectIndex[overrideId] {
+                projectName = project.name
+            } else {
+                let match = RuleMatcher.match(
+                    bundleId: seg.appBundleId,
+                    windowTitle: seg.windowTitle,
+                    rules: rules,
+                    projects: projects
+                )
+                projectName = match?.projectName ?? "Unassigned"
+            }
             let date = dateFormatter.string(from: seg.startedAt)
             let key = "\(date)|\(projectName)|\(seg.appName)"
 

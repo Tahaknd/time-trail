@@ -20,21 +20,37 @@ enum TimeAggregator {
         typealias Bucket = (name: String, color: String?, seconds: TimeInterval)
         var totals: [Int64?: Bucket] = [:]
 
+        let projectIndex = Dictionary(
+            uniqueKeysWithValues: projects.compactMap { p -> (Int64, Project)? in
+                guard let id = p.id else { return nil }
+                return (id, p)
+            }
+        )
+
         for segment in segments {
             let end = segment.endedAt ?? now
             let duration = end.timeIntervalSince(segment.startedAt)
             guard duration > 0 else { continue }
 
-            let match = RuleMatcher.match(
-                bundleId: segment.appBundleId,
-                windowTitle: segment.windowTitle,
-                rules: rules,
-                projects: projects
-            )
-
-            let key = match?.projectId
-            let name = match?.projectName ?? "Unassigned"
-            let color = match?.color
+            // A manual project override on the segment always wins over rule matching.
+            let key: Int64?
+            let name: String
+            let color: String?
+            if let overrideId = segment.overrideProjectId, let project = projectIndex[overrideId] {
+                key = overrideId
+                name = project.name
+                color = project.color
+            } else {
+                let match = RuleMatcher.match(
+                    bundleId: segment.appBundleId,
+                    windowTitle: segment.windowTitle,
+                    rules: rules,
+                    projects: projects
+                )
+                key = match?.projectId
+                name = match?.projectName ?? "Unassigned"
+                color = match?.color
+            }
 
             if totals[key] == nil {
                 totals[key] = (name: name, color: color, seconds: 0)
